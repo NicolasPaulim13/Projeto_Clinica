@@ -1,0 +1,75 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Tratamentos - Sorriso Das Graças{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div class="tudis">
+    <div class="login-container">
+        <img src="{% static 'img/registro-online.png' %}" alt="Logo">
+        <h2>Registre-se!</h2>
+        <form method="POST" action="{% url 'cadastro_create_paciente' %}" id="registration-form">
+            {% csrf_token %}
+            
+            <div class="nome">
+                <input type="text" name="nome_paciente" placeholder="Nome" required>
+            </div>
+
+            <div class="Email">
+                <input type="email" name="email_paciente" placeholder="Email" required>
+            </div>
+
+            <div class="cpf">
+                <input type="text" name="cpf_paciente" placeholder="CPF" id="cpf" required maxlength="11">
+            </div>
+
+            <div class="nacimento">
+                <input type="date" name="data_nascimento_paciente" placeholder="Data de nascimento" required>
+            </div>
+
+            <div class="escolhadosexo">
+                <select name="sexo_paciente" id="gender" required>
+                    <option value="" disabled selected>Sexo</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                    <option value="O">Outro</option>
+                </select>
+            </div>
+            <div class="senhatudo">
+
+            <div class="senha">
+                <input type="password" name="senha_paciente" id="senha_paciente" placeholder="Senha" required>
+            </div>
+
+            <!-- Nova seção de requisitos de senha -->
+            <div class="senha-requisitos-container hidden" id="senha-requisitos">
+                <div class="requisito-item requisito-min-length">Pelo menos 8 caracteres</div>
+                <div class="requisito-item requisito-number">Inclui um número</div>
+                <div class="requisito-item requisito-special-char">Inclui um caractere especial</div>
+            </div>
+
+            <div class="confirma_senha">
+                <input type="password" name="confirma_senha_paciente" placeholder="Confirme sua Senha" required>
+            </div>
+        </div>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+<script src="{% static 'js/registro.js' %}"></script>
+
+
+
+{% endblock %}

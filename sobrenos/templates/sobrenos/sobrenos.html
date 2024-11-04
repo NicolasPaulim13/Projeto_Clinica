@@ -1,0 +1,152 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Tratamentos - Sorriso Das Graças{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="breadcrumb-container mb-4 text-center">
+  <h1 class="mb-2">Sobre Nós</h1>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb justify-content-center">
+      <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'sobrenos' %}">
+        Sobre Nós</a>
+      </li>
+    </ol>
+  </nav>
+</div>
+  <section class="sobre-nos">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2>
+            Somos dentistas experientes e certificados internacionalmente
+          </h2>
+          <p>
+            Esta equipe inclui dentistas, higienistas dentais, assistentes
+            dentários e equipe administrativa que trabalham juntos para
+            oferecer atendimento personalizado e garantir que os pacientes
+            recebam tratamento de alta qualidade em um ambiente seguro e
+            confortável.
+          </p>
+        </div>
+        <div class="col-12 text-center">
+          <img
+            src="{% static 'img/dentistafoto.avif' %}"
+            alt="Equipe de dentistas"
+            class="img-fluid rounded-image"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="conection">
+    <div class="textossobrenos">
+      <div class="diatodo">
+        <img src="{% static 'img\relogio.png' %}"/>
+        <h2>Pronto 24 horas</h2>
+        <p>
+          Serviços de atendimento odontológico de emergência estão disponíveis
+          24 horas por dia, incluindo fins de semana e feriados, para tratar
+          de problemas odontológicos urgentes, como dor intensa ou infecção.
+        </p>
+      </div>
+
+      <div class="diagnostico">
+        <img src="{% static '/img/medico.png' %}"/>
+        <h2>Diagnóstico Preciso</h2>
+        <p>
+          A capacidade da equipe odontológica de identificar e diagnosticar
+          corretamente problemas dentários usando ferramentas e técnicas
+          avançadas de diagnóstico para desenvolver um plano de tratamento
+          eficaz para as necessidades do paciente.
+        </p>
+      </div>
+
+      <div class="parcelas">
+        <img src="{% static 'img/carteira (1).png' %}"/>
+        <h2>Pague em parcelas</h2>
+        <p>
+          A clínica permite que os pacientes dividam o custo do tratamento em
+          parcelas menores ao longo do tempo, em vez de pagar o valor total
+          adiantado, tornando o atendimento odontológico mais acessível e
+          administrável.
+        </p>
+      </div>
+
+      <div class="trabalhcoracao">
+        <img src="{% static '/img/coracao.png' %}" alt="" />
+        <h2>Trabalhe com o coração</h2>
+        <p>
+          Abordar a profissão com empatia, compaixão e priorizar o bem-estar,
+          o conforto e a satisfação do paciente, resultando em uma experiência
+          odontológica positiva e atenciosa.
+        </p>
+      </div>
+
+      <div class="regulador">
+        <img src="{% static '/img/celsius.png' %}" alt="" />
+        <h2>Verificação do regulador</h2>
+        <p>
+          envolve um exame abrangente dos dentes, gengivas e boca, e uma
+          limpeza completa. É crucial para manter uma boa saúde bucal,
+          prevenir problemas dentários e detectar quaisquer problemas
+          precocemente.
+        </p>
+      </div>
+
+      <div class="reservaonline">
+        <img src="{% static '/img/computador.png' %}" alt="" />
+        <h2>Reserva Online</h2>
+        <p>
+          permite que os pacientes agendem consultas pela internet. Este
+          sistema fornece flexibilidade, conveniência e pode ajudar a
+          simplificar o processo de agendamento de consultas para a clínica
+          odontológica.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="oqdizemsobrenos">
+    <div class="titulofeedback">
+     <h2>O que dizem sobre nós</h2>
+      <p>
+        
+      </p>
+    </div>
+
+    
+  </section>
+  <div class="feedback-section">
+    <div class="feedback-card">
+        <img src="{% static '/img/cara (1).png' %}" alt="Octavio Thompson" />
+        <h2>Octavio Thompson</h2>
+        <p>
+            Ótima experiência na Dentica. Equipe profissional, equipamento moderno
+            e instalações limpas. Recomendo muito!
+        </p>
+    </div>
+
+    <div class="feedback-card">
+        <img src="{% static '/img/outrocara.png' %}" alt="Mateus Silva" />
+        <h2>Mateus Silva</h2>
+        <p>
+            A Sorriso Das Graças oferece atendimento de primeira linha com
+            dentistas experientes e equipe amigável. Recomendo muito!
+        </p>
+    </div>
+
+    <div class="feedback-card">
+        <img src="{% static '/img/cara.png' %}" alt="Octavio Thompson" />
+        <h2>Octavio Thompson</h2>
+        <p>
+            Nossa equipe experiente na Dentica se dedica a fornecer serviços de
+            alta qualidade e atendimento personalizado a cada um de nossos
+            clientes.
+        </p>
+    </div>
+</div>
+
+{% endblock %}

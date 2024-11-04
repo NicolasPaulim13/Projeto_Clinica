@@ -1,0 +1,62 @@
+{% extends 'registration/base.html' %} {% block title %}Tratamentos - Sorriso
+Das Graças{% endblock %} {% load static %} {% block content %}
+
+<div class="total">
+<section class="tratamentos-container">
+  
+  <div class="titulu">
+    <h1>Tratamentos</h1>
+    <div class="oine">
+  <a href="{% url 'index' %}">Home</a> / <a href="{% url 'tratamentos' %}">Tratamentos</a>
+  </div>
+</div>
+<div class="protese">
+  <img src="{% static 'img/dente6.png' %}" alt="Próteses" />
+  <h3>Próteses</h3>
+  <p>
+    Elaboração de dispositivos protéticos para substituir dentes perdidos com
+    as mais avançadas tecnologias.
+  </p>
+</div>
+
+  <div class="clareamento">
+    <img src="{% static 'img/dente1.png' %}" alt="Clareamento 100% a laser" />
+    <h3>Clareamento 100% a laser</h3>
+    <p>
+      O clareamento a laser é a maneira mais efetiva de remover manchas
+      rapidamente
+    </p>
+  </div>
+  <div class="endodontia">
+    <img src="{% static 'img/dente2.png' %}" alt="Endodontia" />
+    <h3>Endodontia</h3>
+    <p>As técnicas mais modernas e seguras para o tratamento de canal</p>
+  </div>
+  <div class="CirurgiaOral">
+    <img src="{% static 'img/dente3.png' %}" alt="Cirurgia Oral" />
+    <h3>Cirurgia Oral</h3>
+    <p>
+      Prevenção, diagnóstico e tratamento de alterações, lesões e patologias da
+      cavidade oral e estruturas anexas
+    </p>
+  </div>
+  <div class="implantes">
+    <img src="{% static 'img/dente4.png' %}" alt="Implantes" />
+    <h3>Implantes</h3>
+    <p>
+      Postes ou armações de metal que são cirurgicamente posicionadas no osso da
+      mandíbula, sob as gengivas.
+    </p>
+  </div>
+  <div class="tratamento">
+    <img src="{% static 'img/dente5.png' %}" alt="Ortodontia" />
+    <h3>Ortodontia</h3>
+    <p>
+      Para a correção do mal posicionamento dos dentes e dos ossos da maxila e
+      da mandíbula.
+    </p>
+  </div>
+ 
+</section>
+
+{% endblock %}

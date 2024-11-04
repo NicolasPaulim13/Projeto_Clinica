@@ -1,0 +1,190 @@
+/* Estilos gerais */
+.total {
+    position: relative;
+    height: auto; /* Permite que o conteúdo defina a altura */
+}
+
+.titulu {
+    position: relative;
+    left: 10em;
+    box-shadow: none;
+    height: 10px;
+}
+
+.oine {
+    left: 2em;
+    position: relative;
+    margin-left: 81px;
+    top: -20px;
+}
+
+.titulu h1 {
+    color: #333;
+    box-shadow: none;
+    position: relative;
+    left: 100px;
+    top: -5px;
+}
+
+.titulu a {
+    color: #000;
+    text-decoration: none;
+}
+
+
+.titulu a:hover {
+    text-decoration: underline;
+}
+
+.tratamentos-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os elementos se ajustem automaticamente */
+    justify-content: center;
+    padding: 50px;
+    gap: 50px;
+    height: auto; /* A altura se ajusta automaticamente ao conteúdo */
+    margin-top: 20px;
+}
+
+/* Estilos para os cards de tratamentos */
+.protese{
+    background-color: #c9e9f8; 
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.3s;
+    position: relative;
+    left: -10em;
+    top: 5em;
+} 
+.clareamento{
+    background-color: #c9e9f8; 
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.3s;
+    position: relative;
+    left: -9em;
+    top: 5em;
+}
+ .endodontia{
+    background-color: #c9e9f8; 
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.3s;
+    position: relative;
+    left: -8em;
+    top: 5em;
+}
+  .CirurgiaOral{
+    background-color: #c9e9f8; 
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.3s;
+    position: relative;
+    left: -2em;
+    top: 5em;
+} 
+  .implantes{
+    background-color: #c9e9f8; 
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.3s;
+    position: relative;
+    left: -1em;
+    top: 5em;
+}
+ .tratamento {
+    background-color: #c9e9f8; 
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.3s;
+    position: relative;
+    left: 0em;
+    top: 5em;
+}
+
+.protese img, .clareamento img, .endodontia img, .CirurgiaOral img, .implantes img, .tratamento img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+.protese:hover, .clareamento:hover, .endodontia:hover, .CirurgiaOral:hover, .implantes:hover, .tratamento:hover {
+    transform: scale(1.05);
+}
+
+/* Estilos responsivos para telas menores */
+@media (max-width: 768px) {
+    .tratamentos-container {
+        flex-direction: column; /* Empilha os elementos em coluna */
+        align-items: center;
+        gap: 30px;
+        padding: 20px;
+        margin-top: 70px;
+    }
+
+    .protese, .clareamento, .endodontia, .CirurgiaOral, .implantes, .tratamento {
+        width: 100%; /* Ocupa 100% da largura disponível */
+        max-width: 300px; /* Mantém um limite de largura */
+        position: relative;
+        top: 0; /* Remove o posicionamento manual */
+        left: 0; /* Remove o deslocamento horizontal */
+        right: 0;
+    }
+
+    .titulu {
+        left: 50%; /* Centraliza o título */
+        transform: translateX(-50%);
+        position: relative;
+        top: -5.5em;
+        left: 5.5em;
+    }
+
+    .oine {
+        left: 0; /* Ajuste para garantir que o elemento siga o fluxo natural */
+    }
+}
+
+/* Estilos para telas grandes */
+@media (min-width: 769px) {
+    .tratamentos-container {
+        flex-direction: row; /* Alinha os elementos em linha */
+        flex-wrap: wrap; /* Permite que os elementos se movam para a próxima linha */
+        gap: 30px; /* Espaçamento entre os cards */
+        padding: 20px;
+    }
+
+    .protese, .clareamento, .endodontia, .CirurgiaOral, .implantes, .tratamento {
+        flex: 1 1 calc(33.333% - 30px); /* Largura de um terço do container menos o espaçamento */
+        max-width: 300px; /* Mantém um limite de largura */
+        margin-bottom: 30px; /* Espaço entre as linhas de cards */
+    }
+
+    .titulu {
+        left: 28%;
+        transform: none; /* Remove a transformação para a tela grande */
+        position: relative;
+    }
+
+    .oine {
+        position: relative;
+        left: 20%;
+    }
+}

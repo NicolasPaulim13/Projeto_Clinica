@@ -1,0 +1,73 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Tratamentos - Sorriso Das Graças{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+  <div class="faq-container">
+    <h1>Perguntas frequentes</h1>
+    <nav>
+      <a href="{% url 'index' %}">Home</a> / <a href="{% url 'faq' %}">Perguntas frequentes</a>
+    </nav>
+    <div class="faq-content">
+      <h2>Pergunta com resposta <span class="highlight">Sim</span>!</h2>
+      <div class="questions">
+        <div class="icons1">
+          <img src="#" alt="">
+        </div>
+        <ul>
+          <li>Vocês oferecem serviços de limpeza dentária e cuidados preventivos?</li>
+          <li>Vocês aceitam seguro odontológico ou oferecem opções de financiamento para tratamentos?</li>
+          <li>Vocês oferecem serviços odontológicos de emergência para problemas dentários urgentes?</li>
+          <li>Vocês oferecem tratamentos de clareamento dental para melhorar a aparência de dentes manchados ou descoloridos?</li>
+          <li>Vocês oferecem tratamentos com alinhadores transparentes, como o Invisalign, para alinhar os dentes sem aparelhos tradicionais?</li>
+        </ul>
+        <div class="icons2">
+          <img src="#" alt="">
+        </div>
+        <ul>
+          <div class="midicao">
+       <img src="{% static 'img/mediczao.jpeg' %}" alt="">
+      </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-grid-container">
+    <div class="faq-container">
+      <div class="pergunta" onclick="toggleResposta(this)">
+        <span>Quais são alguns serviços odontológicos comuns oferecidos pelos dentistas?</span>
+        <span class="icon">&#9660;</span>
+      </div>
+      <div class="resposta">
+        Os serviços odontológicos comuns oferecidos por dentistas incluem: exames dentários regulares, limpezas, obturações, canais radiculares, extrações, coroas, pontes e implantes.
+      </div>
+    </div>
+
+    <div class="faq-container">
+      <div class="pergunta" onclick="toggleResposta(this)">
+        <span>O que fazer se tiver uma emergência odontológica?</span>
+        <span class="icon">&#9660;</span>
+      </div>
+      <div class="resposta">
+        Se você tiver uma emergência odontológica, como um dente quebrado ou uma dor de dente severa, é importante entrar em contato com seu dentista imediatamente. Muitos consultórios odontológicos têm serviços de emergência disponíveis para atender as necessidades odontológicas urgentes.
+      </div>
+    </div>
+
+    <div class="faq-container">
+      <div class="pergunta" onclick="toggleResposta(this)">
+        <span>Vocês oferecem tratamentos de clareamento dental?</span>
+        <span class="icon">&#9660;</span>
+      </div>
+      <div class="resposta">
+        Sim, oferecemos tratamentos de clareamento dental para melhorar a aparência de dentes manchados ou descoloridos.
+      </div>
+    </div>
+  </div>
+
+<script src="{% static 'js/ScriptFaq.js' %}" ></script>
+
+{% endblock %}

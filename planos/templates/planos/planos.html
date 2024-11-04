@@ -1,0 +1,104 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Tratamentos - Sorriso Das Graças{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div class="tudao">
+    <section class="health-plan-section">
+        <div class="content">
+            <h2>Procurando também Plano de Saúde?</h2>
+            <p>Aproveite e contrate com condições especiais!</p>
+            <button>SOLICITAR COTAÇÃO</button>
+        </div>
+        <div class="sorriso">
+        <img src="{% static 'img/sorrindo.png' %}" >
+    </div>
+    </section>
+
+    <section class="plans-section">
+        <div class="plans-container">
+            <div class="plan-card">
+                <h3>Amil Dental K25 (Kids)</h3>
+                <p>a partir de</p>
+                <h4>R$ 32<sup>89</sup></h4>
+                <p>Por pessoa/mensal</p>
+                <p>Por pessoa</p>
+                <button>CONHECER PLANO</button>
+            </div>
+            <div class="plan-card">
+                <h3>Amil Dental Familiar</h3>
+                <p>a partir de</p>
+                <h4>R$ 42<sup>50</sup></h4>
+                <p>Por pessoa/mensal</p>
+                <p>3 ou mais pessoas</p>
+                <button>CONHECER PLANO</button>
+            </div>
+            <div class="plan-card">
+                <h3>Amil Dental Empresarial</h3>
+                <p>a partir de</p>
+                <h4>R$ 20<sup>90</sup></h4>
+                <p>Por pessoa/mensal</p>
+                <p>A partir de 30 pessoas</p>
+                <button>CONHECER PLANO</button>
+            </div>
+            <div class="plan-card">
+                <h3>Amil Dental Individual</h3>
+                <p>a partir de</p>
+                <h4>R$ 49<sup>99</sup></h4>
+                <p>Por pessoa/mensal</p>
+                <p>1 ou 2 pessoas</p>
+                <button>CONHECER PLANO</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="plans-section">
+        <div class="plans-container">
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Amil E50 Individual</h3>
+                </div>
+                <div class="plan-body">
+                    <p class="plan-price">R$ 72,14</p>
+                    <p class="plan-info">Por pessoa/mensal<br>3 + vidas</p>
+                    <button class="plan-button">CONHECER PLANO</button>
+                </div>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Amil Dental E170 Prótese</h3>
+                </div>
+                <div class="plan-body">
+                    <p class="plan-price">R$ 187,77</p>
+                    <p class="plan-info">Por pessoa/mensal<br>3 + vidas</p>
+                    <button class="plan-button">CONHECER PLANO</button>
+                </div>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Amil Dental E80 Ortodontia</h3>
+                </div>
+                <div class="plan-body">
+                    <p class="plan-price">R$ 99,11</p>
+                    <p class="plan-info">Por pessoa/mensal<br>3 + vidas</p>
+                    <button class="plan-button">CONHECER PLANO</button>
+                </div>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Amil Dental E60 Prótese Clínica</h3>
+                </div>
+                <div class="plan-body">
+                    <p class="plan-price">R$ 135,50</p>
+                    <p class="plan-info">Por pessoa/mensal<br>3 + vidas</p>
+                    <button class="plan-button">CONHECER PLANO</button>
+                </div>
+            </div>
+    </section>
+    
+    {% endblock %}

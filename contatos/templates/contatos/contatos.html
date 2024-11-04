@@ -1,0 +1,41 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Tratamentos - Sorriso Das Graças{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="contact-section">
+    <div class="titulao">
+    <h1>Contatos</h1>
+    <nav>
+      <a href="{% url 'index' %}">Home</a> / <a href="{% url 'contatos' %}">Contatos</a>
+    </nav>
+</div>
+    <div class="contact-container">
+        <div class="mapa">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.334373981046!2d-46.60093262489113!3d-23.55643147880329!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce594987aded63%3A0xbbff953e0ff625f0!2sEscola%20Senai%20%22Morvan%20Figueiredo%22!5e0!3m2!1spt-BR!2sbr!4v1725368932792!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="contact-details">
+            <h3>Sorriso das graças</h3>
+            <p>R. do Oratório, 215 - Mooca, São Paulo - SP, 03117-000</p>
+            <p>01120763200 (Central de chmada)</p>
+            <p>01120763200 (Suporte ao clientes)</p>
+            <p>ouvidoria@sesisenaimt.ind.br</p>
+        </div>
+        <div class="contact-form">
+            <h3>Mande Suas Duvidas!</h3>
+            <form id="contactForm">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" placeholder="Message" required></textarea>
+                <button type="submit">Enviar!</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/contatos.js' %}"></script>
+
+{% endblock %}

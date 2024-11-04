@@ -1,0 +1,48 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Tratamentos - Sorriso Das Graças{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div class="tudis">
+    <div class="login-container">
+        <!-- Logo da página de login -->
+        <img src="{% static 'img/esqueceu-a-senha.png' %}" alt="Logo">
+        <!-- Título da página -->
+        <h2>Esqueci a senha</h2>
+        <!-- Formulário de registro -->
+        <form method="POST" action="{% url 'confirmaremail/' %}">
+            {% csrf_token %}
+            <div class="Email">
+                <input type="email" id="email" name="email_paciente" placeholder="Email" required>
+            </div>
+            <button type="submit">Enviar código de recuperação</button>
+        </form>
+        
+        <!-- Exibição de erros no formulário -->
+        {% if form.errors %}
+        <div class="error">
+            <p>Por favor, corrija os erros abaixo:</p>
+            <ul>
+                {% for field in form %}
+                    {% if field.errors %}
+                        <li>{{ field.label }}: {{ field.errors }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+
+        <!-- Link para registro de novo usuário -->
+        <div class="signup-link">
+            <p>Dentista? <a href="{% url 'cadastro_adm' %}">Acesse o painel exclusivo aqui</a></p>
+            <p>Paciente? <a href="{% url 'login' %}">Acesse seu painel pessoal aqui</a></p>
+            <p>Administrador? <a href="{% url 'cadastro_chefe' %}">Acesse seu painel pessoal aqui</a></p>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/registro.js' %}"></script>
+{% endblock %}

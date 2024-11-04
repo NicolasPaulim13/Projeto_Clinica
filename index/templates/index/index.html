@@ -1,0 +1,137 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Faça o Login</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Login:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <label for="password-input">Senha:</label>
+                            <div class="password-container">
+                                <input type="password" class="form-control" id="password-input">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="button-cadastre">Cadastre-se</a>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" id="liveToastBtn">Login</button>
+                        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="toast-header">
+                                    <strong class="me-auto">Sorriso das Graças</strong>
+                                    <small>Agora Mesmo</small>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+                                <div class="toast-body">
+                                    Login feito com Sucesso
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <script>
+                    // Obtém o botão e o toast
+                    var toastTrigger = document.getElementById('liveToastBtn');
+                    var toastLiveExample = document.getElementById('liveToast');
+                    
+                    // Verifica se o botão existe na página
+                    if (toastTrigger) {
+                        toastTrigger.addEventListener('click', function () {
+                            var toast = new bootstrap.Toast(toastLiveExample);
+                            toast.show();
+                        });
+                    }
+                    </script>
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="parte1">
+        <div class="conteudo-home">
+            <img class="img-principal" src="{% static  'img/home-principal.jpg' %}" alt="">
+            <h1 class="titulo-home">Odontologia Sorriso das Graças</h1>
+            <h2>Cuidando do Seu Sorriso com Dedicação e Excelência. Nossa equipe de profissionais qualificados
+                oferece
+                tratamentos de alta qualidade para garantir sua saúde bucal e um sorriso radiante.</h2>
+            <button type="button" class="btn btn-outline-primary">Saiba Mais</button>
+        </div>
+    </section>
+    
+
+    <section class="parte2">
+        <div class="imagekid">
+          <img src="{% static  'img/crianca.jpg' %}" alt="">
+        </div>
+        <div class="textkid">
+          <h2>Por que você deve escolher nosso serviço odontológico?</h2>
+          <p>Descubra por que nosso serviço odontológico se destaca dos demais. Da nossa equipe experiente ao nosso equipamento de última geração, oferecemos atendimento excepcional para todas as suas necessidades odontológicas.</p>
+        </div>
+      </section>
+
+      <section class="parte3">
+
+        <div class="card_vantagens">
+            <div class="card">
+                <h3>Equipe Especializada e Qualificada</h3>
+                <p>Nossa equipe é formada por profissionais super experientes que entendem tudo sobre o que fazem. Eles estão sempre aprendendo coisas novas para te oferecer o melhor atendimento.</p>
+            </div>
+            <div class="card">
+                <h3>Equipe Especializada e Qualificada</h3>
+                <p>Com a nossa tecnologia de ponta, seus problemas são resolvidos mais rápido e com mais precisão. Nossa infraestrutura moderna garante um atendimento mais eficiente e confortável para você.</p>
+            </div>
+        </div>
+
+
+      </section>
+
+      <section class="parte4"> 
+        <div class="titulo">
+            <h2>Planos</h2>
+        </div>
+    
+        
+            <article class="plano">
+                <div class="plano-header">Plano Individual</div>
+                <div class="plano-body">
+                    <p class="preco">$ 39,99</p>
+                    <p>/mês</p>
+                    <button>Saiba mais</button>
+                </div>
+            </article>
+    
+            <article class="plano">
+                <div class="plano-header">Plano Família</div>
+                <div class="plano-body">
+                    <p class="preco">$ 249,99</p>
+                    <p>/mês</p>
+                    <button>Saiba mais</button>
+                </div>
+            </article>
+    
+            <article class="plano">
+                <div class="plano-header">Plano Premium</div>
+                <div class="plano-body">
+                    <p class="preco">$ 99,99</p>
+                    <p>/mês</p>
+                    <button>Saiba mais</button>
+                </div>
+            </article>
+       
+
+
+      </section>
+    
+    {% endblock %}

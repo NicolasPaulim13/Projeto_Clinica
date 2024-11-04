@@ -1,0 +1,60 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Login Paciente - Sorriso Das Graças{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div class="tudis">
+    <div class="login-container">
+        <img src="{% static 'img/qualquerbosta.png' %}" alt="Logo">
+        <h2>Login Paciente</h2>
+        <form method="post" action="{% url 'login' %}">
+
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            
+            <div>
+                {{ form.email_paciente.errors }}
+                <input id="usuario" type="email" name="email_paciente" placeholder="E-mail" 
+                required value="{{ form.email_paciente.value|default_if_none:'' }}">
+            </div>
+            
+
+            <div>
+                {{ form.password.errors }}
+                <!-- Ajuste: name agora é senha_paciente -->
+                <input id="senha" type="password" name="senha_paciente" placeholder="Senha" required>
+            </div>
+
+            <button type="submit" class="entrar-button">Entrar</button>
+        </form>
+
+        <!-- Exibição de erros no formulário -->
+        {% if messages %}
+        <div class="error">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Seção de login por redes sociais -->
+        <div class="social-login">
+            <p>Ou entre com:</p>
+            <div class="social-buttons">
+                <p><img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt=""></p>
+                <p><img src="https://img.icons8.com/?size=100&id=95294&format=png&color=000000" alt=""></p>
+            </div>
+        </div>
+
+        <!-- Links adicionais -->
+        <div class="signup-link">
+            <p>Não tem uma conta? <a href="{% url 'cadastro_registro' %}">Registre-se aqui</a></p>
+            <p>Dentista? <a href="{% url 'login_medico' %}">Acesse o painel exclusivo aqui</a></p>
+            <p>Administrador? <a href="{% url 'admin:index' %}">Acesse o painel administrativo aqui</a></p>
+            <p>Esqueci a senha <a href="{% url 'esqueceu_senha' %}">Acesse aqui</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

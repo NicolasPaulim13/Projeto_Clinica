@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/icon.ico' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+
+  <title>{% block title %}Minha Página{% endblock %}</title>
+
+  <link rel="stylesheet" href="{% static 'css/StyleFaq.css' %}">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" href="{% static 'css/tratamentos.css' %}">
+  <link rel="stylesheet" href="{% static 'css/planos.css' %}">
+  <link rel="stylesheet" href="{% static 'css/contatos.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sobrenos.css' %}">
+  <link rel="stylesheet" href="{% static 'css/consulta.css' %}">
+  <link rel="stylesheet" href="{% static 'css/cadastro.css' %}">
+  <link rel="stylesheet" href="{% static 'css/cadastro_adm.css' %}">
+  <link rel="stylesheet" href="{% static 'css/registro.css' %}">
+
+</head>
+
+<body>
+  <header class="container-nav">
+    <img src="{% static 'img/logo preta.png' %}" alt="Logo Sorriso Das Graças">
+    <button class="hamburger-menu" aria-label="Toggle menu">☰</button>
+    <ul class="nav">
+      <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'planos' %}">Planos</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'tratamentos' %}">Tratamentos</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'faq' %}">FAQ</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'contatos' %}">Contatos</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'sobrenos' %}">Sobre Nós</a></li>
+
+      <!-- Verifique se o usuário está autenticado -->
+      {% if user.is_authenticated and user.cadastroregistro %}
+      <li class="nav-item dropdown">
+        <!-- Nome do usuário como link para abrir o dropdown -->
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="perfilDropdown" role="button"
+          aria-expanded="false">
+          <!-- Ajuste a posição da imagem e do nome alterando a ordem aqui -->
+          <img class="perfil-imagem me-2" src="{{ user.cadastroregistro.imagem_perfil.url }}" alt="Imagem de Perfil">
+          Olá {{ user.cadastroregistro.nome_paciente|cut:" +1"|slice:"9" }}
+        </a>
+      
+        
+
+        <!-- Menu dropdown com opções de perfil -->
+        <ul class="dropdown-menu dropdown-menu-end" id="dropdownMenu" aria-labelledby="perfilDropdown">
+          <li class="dropdown-item-text">
+            <strong>{{ user.cadastroregistro.nome_paciente }}</strong>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+
+
+          <!-- Botão para exibir o formulário de edição de perfil -->
+          <li><a href="#" class="dropdown-item" onclick="toggleForm(event, 'editProfileForm')">Editar Perfil</a></li>
+
+          <!-- Formulário de edição de perfil dentro do dropdown -->
+          <li>
+            <form method="POST" action="{% url 'edit_profile' %}" enctype="multipart/form-data" id="editProfileForm"
+              style="display: none;" class="px-4 py-3">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="nomePaciente" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nomePaciente" name="nome_paciente"
+                  value="{{ user.cadastroregistro.nome_paciente }}">
+              </div>
+              <div class="mb-3">
+                <label for="perfilPaciente" class="form-label">Imagem de Perfil</label>
+                <input type="file" class="form-control" id="perfilPaciente" name="imagem_perfil">
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Salvar Alterações</button>
+            </form>
+          </li>
+
+          <!-- Outras opções de perfil -->
+          <li><a class="dropdown-item" href="#"><img src="{}" class="icon me-2">Configurações</a></li>
+          <li><a class="dropdown-item" href="{% url 'consulta_list' %}"><img src="{}" class="icon me-2">Visualizar
+              Consultas</a></li>
+          <li><a class="dropdown-item" href="#"><img src="{}" class="icon me-2">Acessibilidade</a></li>
+          <li><a class="dropdown-item" href="{% url 'logout' %}"><img src="{}" class="icon me-2">Logout</a></li>
+        </ul>
+      </li>
+      {% else %}
+      <!-- Link para login caso o usuário não esteja autenticado -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+      </li>
+      {% endif %}
+
+
+
+
+      <!-- Botão de Consulta -->
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a href="{% url 'consulta' %}">
+          <button type="button" class="btn btn-outline-primary">Faça sua Consulta</button>
+        </a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a href="{% url 'login' %}">
+          <button type="button" class="btn btn-outline-primary">Faça sua Consulta</button>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </header>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  {% block content %}
+  <!-- O conteúdo da página específica será inserido aqui -->
+  {% endblock %}
+  <br>
+  <br>
+  <footer>
+    <div class="container-footer">
+      <div class="nome-footer">
+        <h1>Sorriso das Graças</h1>
+      </div>
+      <br>
+      <div class="redes-sociais">
+        <div class="facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95" />
+          </svg>
+        </div>
+        <div class="linkedin">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor"
+              d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248c-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586c.173-.431.568-.878 1.232-.878c.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252c-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
+          </svg>
+        </div>
+        <div class="twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14">
+            <g fill="none">
+              <g clip-path="url(#primeTwitter0)">
+                <path fill="currentColor"
+                  d="M11.025.656h2.147L8.482 6.03L14 13.344H9.68L6.294 8.909l-3.87 4.435H.275l5.016-5.75L0 .657h4.43L7.486 4.71zm-.755 11.4h1.19L3.78 1.877H2.504z" />
+              </g>
+              <defs>
+                <clipPath id="primeTwitter0">
+                  <path fill="#fff" d="M0 0h14v14H0z" />
+                </clipPath>
+              </defs>
+            </g>
+          </svg>
+        </div>
+        <div class="email">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z" />
+          </svg>
+        </div>
+      </div>
+      <div class="services">
+        <h1>Services</h1>
+        <a href="#">Introdução</a>
+        <a href="#">Parcerias</a>
+        <a href="#">Colaboração</a>
+        <a href="#">Trabalhos Recentes</a>
+        <a href="#">Desenvolvimento Web</a>
+        <a href="#">Marketing nas Redes Sociais</a>
+      </div>
+      <div class="about">
+        <h1>Sobre</h1>
+        <a href="#">Nossa missão</a>
+        <a href="#">Nossa história</a>
+        <a href="#">Membros da equipe</a>
+        <a href="#">Plano e Preços</a>
+        <a href="#">Carreira</a>
+        <a href="#">Bate-papo ao vivo</a>
+      </div>
+      <div class="store">
+        <h1>Baixe agora:</h1>
+        <img src="{% static 'img/app-store.png' %}" alt="">
+        <img src="{% static 'img/play-store.png' %}" alt="">
+        <a
+          href="https://www.google.com/maps/place/Escola+Senai+%22Morvan+Figueiredo%22/@-23.5564315,-46.6009326,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce594987aded63:0xbbff953e0ff625f0!8m2!3d-23.5564315!4d-46.5983577!16s%2Fg%2F1tfzc9hn?entry=ttu">
+          <p>R. do Oratório, 215 - Mooca, São Paulo - SP, 03117-000</p>
+        </a>
+      </div>
+    </div>
+  </footer>
+  <div class="copyright">
+    <h1>Copyright © 2024 - Todos os Direitos Reservados.</h1>
+  </div>
+
+  <script src="{% static 'js/ScriptFaq.js' %}"></script>
+</body>
+
+</html>
