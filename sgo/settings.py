@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'cadastro_adm',
     'cadastro_registro',
     'esqueceu_senha',
+    'config',
 ]
 
 MIDDLEWARE = [
@@ -146,6 +147,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'  # Diretório para coletar os arquivos es
 
 LOGIN_REDIRECT_URL = 'index_cliente'  # Redireciona para a URL após login bem-sucedido
 LOGOUT_REDIRECT_URL = 'index'  # Redireciona para a URL após logout
+LOGIN_URL = '/cadastro/login/'
 
 
 
@@ -158,9 +160,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # settings.py
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'   # Altere para o seu servidor SMTP
+EMAIL_PORT = 587                       # Geralmente 587 para TLS, ou 465 para SSL
+EMAIL_USE_TLS = True                   # Altere para True se estiver usando TLS
 EMAIL_HOST_USER = 'sorrisodasgracas@gmail.com'
-EMAIL_HOST_PASSWORD = '{cjcc fyex dfpv fgkl}'  
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = 'cjcc fyex dfpv fgkl'      # Certifique-se de não compartilhar sua senha
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER 

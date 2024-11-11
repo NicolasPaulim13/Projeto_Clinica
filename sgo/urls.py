@@ -43,4 +43,6 @@ urlpatterns = [
     path('cadastro_adm/', include('cadastro_adm.urls')),
     path('sobrenos/', include('sobrenos.urls')),
     path('esqueceu_senha/', include('esqueceu_senha.urls')),
+    path('config/', include('config.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

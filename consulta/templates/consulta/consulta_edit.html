@@ -1,15 +1,37 @@
-<!-- consulta/consulta_edit.html -->
 {% extends 'registration/base.html' %}
 {% block content %}
 
-<div class="container">
-    <h2>Editar Consulta</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <a href="{% url 'consulta_list' %}" class="btn btn-secondary">Cancelar</a>
-    </form>
+<div class="titulo_consulta">
+    <h1>Editar Consulta</h1>
+    <div class="texto_consulta">
+        <a href="{% url 'index' %}">Home</a> / <a href="{% url 'consulta_list' %}">Consultas</a> / Editar Consulta
+    </div>
 </div>
+
+<div class="form-wrapper">
+    <div class="card p-4 shadow-lg form-container">
+        <form method="POST" action="{% url 'consulta_edit' consulta.id %}">
+            {% csrf_token %}
+            <div class="col-12">
+                <label for="nome" class="form-label">Nome:</label>
+                <input type="text" name="nome" class="form-control" id="nome" value="{{ user.cadastroregistro.nome_paciente }}" readonly />
+            </div>
+            <div class="col-12">
+                <label for="email" class="form-label">E-mail:</label>
+                <input type="email" name="email" class="form-control" id="email" value="{{ user.cadastroregistro.email_paciente }}" readonly />
+            </div>
+            <!-- Campos de edição -->
+            {{ form.as_p }}
+            <div class="col-12 d-grid">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a href="{% url 'consulta_list' %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% load static %}
+
+<!-- Link para o script JavaScript -->
+<script src="{% static 'js/consulta_edit.js' %}"></script>
 
 {% endblock %}

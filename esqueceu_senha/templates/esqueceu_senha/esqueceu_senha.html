@@ -12,7 +12,7 @@
         <!-- Título da página -->
         <h2>Esqueci a senha</h2>
         <!-- Formulário de registro -->
-        <form method="POST" action="{% url 'confirmaremail/' %}">
+        <form method="POST" action="{% url 'esqueceu_senha' %}">
             {% csrf_token %}
             <div class="Email">
                 <input type="email" id="email" name="email_paciente" placeholder="Email" required>
@@ -37,9 +37,9 @@
 
         <!-- Link para registro de novo usuário -->
         <div class="signup-link">
-            <p>Dentista? <a href="{% url 'cadastro_adm' %}">Acesse o painel exclusivo aqui</a></p>
+            <p>Dentista? <a href="{% url 'login_medico' %}">Acesse o painel de médico aqui!</a></p>
             <p>Paciente? <a href="{% url 'login' %}">Acesse seu painel pessoal aqui</a></p>
-            <p>Administrador? <a href="{% url 'cadastro_chefe' %}">Acesse seu painel pessoal aqui</a></p>
+            <p>Administrador? <a href="{% url 'admin:index' %}">Acesse seu painel de Administrador aqui!</a></p>
         </div>
     </div>
 </div>

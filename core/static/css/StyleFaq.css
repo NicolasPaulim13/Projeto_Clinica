@@ -567,6 +567,18 @@ button[type="reset"]:hover {
     border-radius: 50%;
 }
 
+#dropdownMenu{
+    background-color: white
+}
+
+#dropdownMenu a {
+    transition: background-color 900ms;
+}
+
+#dropdownMenu a:hover {
+    background-color: rgb(183, 183, 183);
+}
+
 /* Estilização do dropdown */
 .dropdown-menu {
     display: none;
@@ -581,7 +593,9 @@ button[type="reset"]:hover {
     background-color: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 8px;
+    border: 1.4px solid black;
 }
+
 
 /* Exibir o dropdown quando ativo */
 .dropdown-menu.show {
@@ -594,8 +608,12 @@ button[type="reset"]:hover {
     display: none;
 }
 
-.dropdown-item {
+.dropdown-item{
     cursor: pointer;
+}
+
+#opcoes{
+    background-color: white;
 }
 
 /* Estilos adicionais para os ícones */
@@ -608,11 +626,11 @@ button[type="reset"]:hover {
 .dropdown-item .icon {
     width: 16px;
     height: 16px;
-    margin-right: 8px;
+    margin-right: 10px;
 }
 
 .dropdown-item-text strong {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #333;
 }
 

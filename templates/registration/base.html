@@ -22,6 +22,9 @@
   <link rel="stylesheet" href="{% static 'css/cadastro.css' %}">
   <link rel="stylesheet" href="{% static 'css/cadastro_adm.css' %}">
   <link rel="stylesheet" href="{% static 'css/registro.css' %}">
+  <link rel="stylesheet" href="{% static 'css/consulta_edit.css' %}">
+  <link rel="stylesheet" href="{% static 'css/config.css' %}">
+
 
 </head>
 
@@ -44,7 +47,7 @@
         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="perfilDropdown" role="button"
           aria-expanded="false">
           <!-- Ajuste a posição da imagem e do nome alterando a ordem aqui -->
-          <img class="perfil-imagem me-2" src="{{ user.cadastroregistro.imagem_perfil.url }}" alt="Imagem de Perfil">
+          <img class="perfil-imagem me-2" src="{% static 'img/perfil-icon.png' %}" alt="Imagem de Perfil">
           Olá {{ user.cadastroregistro.nome_paciente|cut:" +1"|slice:"9" }}
         </a>
       
@@ -61,39 +64,19 @@
 
 
 
-          <!-- Botão para exibir o formulário de edição de perfil -->
-          <li><a href="#" class="dropdown-item" onclick="toggleForm(event, 'editProfileForm')">Editar Perfil</a></li>
-
-          <!-- Formulário de edição de perfil dentro do dropdown -->
-          <li>
-            <form method="POST" action="{% url 'edit_profile' %}" enctype="multipart/form-data" id="editProfileForm"
-              style="display: none;" class="px-4 py-3">
-              {% csrf_token %}
-              <div class="mb-3">
-                <label for="nomePaciente" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="nomePaciente" name="nome_paciente"
-                  value="{{ user.cadastroregistro.nome_paciente }}">
-              </div>
-              <div class="mb-3">
-                <label for="perfilPaciente" class="form-label">Imagem de Perfil</label>
-                <input type="file" class="form-control" id="perfilPaciente" name="imagem_perfil">
-              </div>
-              <button type="submit" class="btn btn-primary w-100">Salvar Alterações</button>
-            </form>
-          </li>
-
+         
           <!-- Outras opções de perfil -->
-          <li><a class="dropdown-item" href="#"><img src="{}" class="icon me-2">Configurações</a></li>
-          <li><a class="dropdown-item" href="{% url 'consulta_list' %}"><img src="{}" class="icon me-2">Visualizar
+          <li><a id="opcoes" class="dropdown-item" href="{% url 'config' %}"><img src="{% static 'img/config.png' %}" alt=""> - Configurações</a></li>
+          <li><a id="opcoes" class="dropdown-item" href="{% url 'consulta_list' %}"><img src="{% static 'img/consultas.png' %}" alt=""> -
               Consultas</a></li>
-          <li><a class="dropdown-item" href="#"><img src="{}" class="icon me-2">Acessibilidade</a></li>
-          <li><a class="dropdown-item" href="{% url 'logout' %}"><img src="{}" class="icon me-2">Logout</a></li>
+          
+          <li><a id="opcoes" class="dropdown-item" href="{% url 'logout' %}"><img src="{% static 'img/icon-sair.png' %}" alt=""> - Logout</a></li>
         </ul>
       </li>
       {% else %}
       <!-- Link para login caso o usuário não esteja autenticado -->
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'login' %}">Login</a>
+        <a class="nav-link" href="{% url 'login' %}">Login</a>  
       </li>
       {% endif %}
 
