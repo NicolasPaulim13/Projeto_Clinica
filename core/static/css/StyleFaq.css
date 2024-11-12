@@ -341,14 +341,7 @@ nav a:hover {
     outline: none;
     font-weight: bold;
 }
-.accordion-button2{
-    width: 100%;
-    padding: 20px;
-    text-align: left;
-    background-color: #b2dae5 !important;
-    cursor: pointer;
-    font-size: 18px;
-}
+
 
 .accordion-button:hover {
     background-color: #78ABC3;
