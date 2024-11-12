@@ -5,9 +5,9 @@ from .forms import PerfilForm
 from django.contrib import messages
 from cadastro_registro.models import CadastroRegistro
 
+# views.py
 @login_required
 def config(request):
-    # Busca ou cria o perfil usando o config_user e associa com o CadastroRegistro
     try:
         perfil = Perfil.objects.get(config_user=request.user)
     except Perfil.DoesNotExist:
@@ -19,7 +19,7 @@ def config(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Seu perfil foi atualizado com sucesso!')
-            return redirect('config')  # Mantém na mesma página após salvar
+            return redirect('config')
         else:
             messages.error(request, 'Houve um erro ao salvar suas informações.')
     else:
@@ -27,7 +27,6 @@ def config(request):
 
     return render(request, 'config/config.html', {
         'form': form,
-        'nome_paciente': perfil.cadastro_registro.nome_paciente  # Envia o nome do paciente para o template
+        'perfil': perfil  # Passa o perfil para o template
     })
-
     

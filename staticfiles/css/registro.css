@@ -1,0 +1,149 @@
+
+/* Estilos do campo de E-mail */
+
+
+.Email {
+        width: 100%;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        font-size: 24px;
+        position: relative;
+        top: -2vh;
+    }
+    
+    .Email input {
+        height: 9vh;
+        width: 54vh; /* Largura ajustada */
+        position: relative;
+        right: 2.5vh;
+        border: 1px solid #ccc;
+        font-size: 3vh;
+        border-radius: 1vh;
+        padding: 15px;
+    }
+    
+    /* Estilos do campo de CPF */
+    .cpf {
+        width: 100%;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        font-size: 24px;
+        position: relative;
+        top: -5vh; /* Ajustado para o mesmo valor do campo de e-mail */
+    }
+    
+    .cpf input {
+        height: 9vh;
+        width: 54vh; /* Ajustado para coincidir com o campo de e-mail */
+        position: relative;
+        right: 2.5vh;
+        border: 1px solid #ccc;
+        font-size: 3vh;
+        border-radius: 1vh;
+        padding: 15px;
+    }
+    
+    /* Remove as setas dos campos de número */
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+    }
+    
+   
+    /* Estilos adicionais */
+    .senha {
+        position: relative;
+        top: 2.2vh;
+        
+    }
+
+    .confirma_senha {
+        position: relative;
+        top: 1vh;
+    }
+    
+    /* Estilos do campo de Nascimento */
+    .nacimento {
+        width: 100%; /* Mantém o mesmo width */
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        font-size: 24px;
+        top: -9.1vh; /* Ajuste conforme o posicionamento desejado */
+        position: relative;
+        right: 2vh;
+    }
+    
+    .nacimento input {
+        height: 9vh; /* Mesma altura que os campos de E-mail e CPF */
+        width: 54vh; /* Mesma largura */
+        border: 1px solid #ccc;
+        border-radius: 1vh;
+        font-size: 3vh;
+        padding: 15px;
+        color: gray;
+    }
+    
+    /* Estilos para o campo de seleção de Sexo */
+    .escolhadosexo {
+        width: 100%;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        font-size: 24px;
+        top: -11.5vh; /* Ajuste para alinhar com o campo de Nascimento */
+        position: relative;
+        right: 2vh;
+    }
+    
+    .escolhadosexo select {
+        height: 9vh; /* Mesma altura que os campos de E-mail e CPF */
+        width: 54vh; /* Mesma largura */
+        border: 1px solid #ccc;
+        border-radius: 1vh;
+        font-size: 3vh;
+        padding: 15px;
+        -webkit-appearance: none; /* Remove a seta padrão em alguns navegadores */
+        -moz-appearance: none; /* Remove a seta padrão no Firefox */
+        appearance: none; /* Remove a seta padrão em navegadores modernos */
+        background-color: white;
+        color: gray;
+    }
+
+    
+    .senhatudo{
+        position: relative;
+        top: -10vh;
+    }
+    
+    .senha-requisitos-container {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    .senha-requisitos-container.hidden {
+        display: none; /* Oculta a div inicialmente */
+    }
+    
+    .requisito-item {
+        display: flex;
+        align-items: center;
+        color: red; /* Cor inicial vermelha */
+        margin-bottom: 5px;
+    }
+    
+    .requisito-item::before {
+        content: '●';
+        color: inherit;
+        margin-right: 8px;
+        font-size: 1.2em;
+    }
+    
+    
+    

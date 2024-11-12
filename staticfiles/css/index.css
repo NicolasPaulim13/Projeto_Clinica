@@ -1,0 +1,355 @@
+/* Estilos Globais */
+.parte1 {
+    position: relative;
+}
+
+.img-principal {
+    width: 100%;
+    object-fit: cover;
+    height: 40%;
+    border-bottom-left-radius: 10vh;
+    border-bottom-right-radius: 10vh;
+}
+
+/* Estilos para telas grandes */
+.conteudo-home h1 {
+    font-family: "PlayfairDisplay";
+    font-size: 375%;
+    width: 30%;
+    position: relative;
+    top: -90vh;
+    left: 5%;
+    color: rgb(255, 255, 255);
+    
+}
+
+.conteudo-home h2 {
+    font-family: "Inter Light";
+    font-size: 1.8rem;
+    font-weight: 100;
+    opacity: 80%;
+    position: relative;
+    top: -125vh;
+    left: 50%;
+    width: 40%;
+    height: 1%;
+    color: rgb(255, 255, 255);
+}
+
+.conteudo-home button {
+    border-radius: 50vh;
+    width: 20%;
+    position: relative;
+    left: 4.5%;
+    top: -110vh;
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    border-color: transparent;
+    font-weight: 600;
+}
+
+.conteudo-home button:hover {
+    background-color: #313131;
+    color: white;
+    border-color: transparent;
+    transition: 1000ms;
+}
+
+/* Estilos para telas médias */
+@media (max-width: 600px) {
+    .conteudo-home h1 {
+        font-size: 300%;
+        width: 40%;
+        top: -30vh;
+        left: 5%;
+    }
+
+    .conteudo-home h2 {
+        font-size: 1.5rem;
+        top: -85vh;
+        left: 10%;
+        width: 80%;
+    }
+
+    .conteudo-home button {
+        width: 30%;
+        top: -85vh;
+        left: 5%;
+    }
+
+   
+
+    
+}
+
+/* Estilos para telas pequenas */
+@media (max-width: 768px) {
+    .conteudo-home h1 {
+        font-size: 200%;
+        width: 200%;
+        top: -40vh;
+        right: 10%;
+    }
+
+    .conteudo-home h2 {
+        font-size: 1.2rem;
+        top: -40vh;
+        width: 80%;
+        left: 10%;
+    }
+
+    .conteudo-home button {
+        width: 60%;
+        top: -40vh;
+        left: 19%;
+    }
+
+    
+}
+
+/* parte2 */
+
+.parte2 {
+    position: relative;
+    top:-80vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .imagekid {
+    position: relative;
+    right: 2vh;
+    flex: 1;
+    max-width: 300px;
+    margin-right: 20px;
+    
+  }
+  
+  .imagekid img {
+    width: 80%;
+    border-radius: 15px;
+  }
+  
+  .textkid {
+    flex: 2;
+    max-width: 600px;
+  }
+  
+  .textkid h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .textkid p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 768px) {
+    .parte2 {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .imagekid {
+      margin-right: 0;
+      margin-bottom: 20px;
+      top: 100vh;
+    }
+  
+    .textkid h2 {
+      font-size: 22px;
+    }
+  
+    .textkid p {
+      font-size: 14px;
+    }
+  }
+    
+  /* parte3 */
+  .card_vantagens {
+    position: relative;
+    top: -70vh;
+    left: 12%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 900px;
+    width: 100%;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    transition: transform 0.3s ease; /* Adiciona efeito suave ao passar o mouse */
+}
+
+/* Efeito de aumento ao passar o mouse */
+.card:hover {
+    transform: scale(1.05); /* Aumenta o tamanho dos cards em 5% */
+}
+
+h3 {
+    color: #7f9db9;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Responsividade: cards empilhados quando a tela for menor que 768px */
+@media (max-width: 768px) {
+    .card_vantagens {
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        top: -5vh;
+        
+    }
+
+    .card {
+        max-width: 100%;
+        margin-bottom: 20px;
+        right: 10%;
+    }
+}
+  /* parte4 */
+
+
+  .titulo {
+    margin-bottom: 30px;
+}
+
+.titulo h2 {
+    position: relative;
+    top: -60vh;
+    left: 95vh;
+    font-size: 24px;
+}
+
+.parte4 {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: -4em
+
+}
+
+.plano {
+    position: relative;
+    top: -48vh;
+    left: 12%;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+    max-width: 280px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    /* Adicionando margem lateral para separar os cards */
+    margin: 0 40px;  /* 15px de margem em cada lado */
+}
+
+.plano-header {
+    background-color: #000;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+}
+
+.plano-body {
+    padding: 20px;
+}
+
+.preco {
+    font-size: 36px;
+    margin: 15px 0;
+}
+
+button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+/* Efeito hover nos planos */
+.plano:hover {
+    transform: scale(1.05);
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .parte4 {
+        position: relative;
+        flex-direction: column;
+        top: 50vh;
+        right: 10vh;
+    }
+
+    .plano {
+        
+        max-width: 100%;
+        /* Removendo margem lateral nas telas menores para centralizar os cards */
+        margin: 20px 0;
+    }
+}
+
+.carousel-container {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    max-width: 100%; /* opcional: limite para largura máxima */
+}
+
+/* Pista do carrossel com a animação */
+.carousel-track {
+    display: flex;
+    animation: scroll 20s linear infinite;
+}
+
+/* Itens do carrossel */
+.carousel-item {
+    min-width: 33.33%; /* Mostra três imagens ao mesmo tempo (ajuste para mais ou menos) */
+    box-sizing: border-box;
+    transition: transform 0.5s;
+    display: block;
+    margin-right: 0
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Animação de rolagem contínua */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
