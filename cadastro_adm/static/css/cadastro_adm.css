@@ -3,14 +3,18 @@
 
 /* Container principal do formulário de login */
 
-.tudis {
+
+
+.tudis{
     position: relative;
     left: 35%;
     margin-top: 5%;
+    width: 40%;
+    
 }
 
 .tudis img{
-    width: 100%;
+    width: 40%;
 
 }
 

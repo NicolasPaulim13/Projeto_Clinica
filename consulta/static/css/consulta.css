@@ -36,6 +36,31 @@
     text-decoration: underline;
 }
 
+/* Select de médico - Ajuste direto */
+.select-medico {
+    display: block; /* Garante que o elemento seja exibido como bloco */
+    width: 100%; /* Ocupa toda a largura disponível */
+    max-width: 100%; /* Impede ultrapassar limites */
+    height: auto; /* Ajusta altura dinamicamente */
+    padding: 8px 10px; /* Adiciona espaço interno */
+    font-size: 1rem; /* Tamanho de fonte legível */
+    color: #333; /* Cor do texto */
+    background-color: #fff; /* Fundo branco */
+    border: 1px solid #ccc; /* Borda padrão */
+    border-radius: 5px; /* Borda levemente arredondada */
+    box-shadow: none; /* Remove sombras extras */
+    appearance: none; /* Remove aparência padrão do navegador */
+}
+
+/* Responsividade */
+@media (max-width: 576px) {
+    .select-medico {
+        font-size: 0.9rem; /* Fonte menor em telas pequenas */
+    }
+}
+
+
+
 
 
 /* Botão principal */

@@ -36,36 +36,32 @@
     </div>
   </div>
 
-  <div class="faq-grid-container">
-    <div class="faq-container">
-      <div class="pergunta" onclick="toggleResposta(this)">
-        <span>Quais são alguns serviços odontológicos comuns oferecidos pelos dentistas?</span>
-        <span class="icon">&#9660;</span>
-      </div>
-      <div class="resposta">
-        Os serviços odontológicos comuns oferecidos por dentistas incluem: exames dentários regulares, limpezas, obturações, canais radiculares, extrações, coroas, pontes e implantes.
-      </div>
+  
+  <div class="accordion">
+    <div class="accordion-item">
+        <button class="accordion-button">Quais são alguns serviços odontológicos comuns oferecidos pelos dentistas?</button>
+        <div class="accordion-content">
+            <p>Os serviços odontológicos comuns oferecidos por dentistas incluem: exames dentários regulares, limpezas, obturações, canais radiculares, extrações, coroas, pontes e implantes.</p>
+        </div>
     </div>
+    <div class="accordion-item">
+        <button class="accordion-button">O que fazer se tiver uma emergência odontológica?</button>
+        <div class="accordion-content">
+            <p>Em caso de emergência odontológica, é recomendável procurar um dentista imediatamente para evitar complicações e aliviar a dor.</p>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <button class="accordion-button">Vocês oferecem tratamentos de clareamento dental?</button>
+        <div class="accordion-content">
+            <p>Sim, oferecemos tratamentos de clareamento dental para ajudar a melhorar a aparência dos dentes e deixar o sorriso mais brilhante.</p>
+        </div>
+    </div>
+</div>
 
-    <div class="faq-container">
-      <div class="pergunta" onclick="toggleResposta(this)">
-        <span>O que fazer se tiver uma emergência odontológica?</span>
-        <span class="icon">&#9660;</span>
-      </div>
-      <div class="resposta">
-        Se você tiver uma emergência odontológica, como um dente quebrado ou uma dor de dente severa, é importante entrar em contato com seu dentista imediatamente. Muitos consultórios odontológicos têm serviços de emergência disponíveis para atender as necessidades odontológicas urgentes.
-      </div>
-    </div>
-
-    <div class="faq-container">
-      <div class="pergunta" onclick="toggleResposta(this)">
-        <span>Vocês oferecem tratamentos de clareamento dental?</span>
-        <span class="icon">&#9660;</span>
-      </div>
-      <div class="resposta">
-        Sim, oferecemos tratamentos de clareamento dental para melhorar a aparência de dentes manchados ou descoloridos.
-      </div>
-    </div>
+<div class="accordion-item">
+  <button class="accordion-button2">Com que frequência devo fazer uma limpeza dentária?</button>
+  <div class="accordion-content">
+      <p>Recomenda-se fazer uma limpeza dentária a cada seis meses. No entanto, a frequência pode variar de acordo com a saúde bucal de cada pessoa. O dentista pode sugerir limpezas mais frequentes caso haja maior acúmulo de tártaro ou risco de doenças gengivais.</p>
   </div>
 
 <script src="{% static 'js/ScriptFaq.js' %}" ></script>

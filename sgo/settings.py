@@ -90,6 +90,13 @@ WSGI_APPLICATION = 'sgo.wsgi.application'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# Define o tempo que a sessão permanecerá ativa antes de expirar (em segundos)
+SESSION_COOKIE_AGE = 86400  # 1 dia
+SESSION_SAVE_EVERY_REQUEST = True  # Salva a sessão a cada request, estendendo o tempo de expiração
+
+# settings.py
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # ou outro backend de sessão, dependendo do seu caso
+
 
 DATABASES = {
     'default': {
@@ -147,7 +154,10 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'  # Diretório para coletar os arquivos es
 
 LOGIN_REDIRECT_URL = 'index_cliente'  # Redireciona para a URL após login bem-sucedido
 LOGOUT_REDIRECT_URL = 'index'  # Redireciona para a URL após logout
-LOGIN_URL = '/cadastro/login/'
+# settings.py
+LOGIN_URL = '/cadastro/login/'  # Ajuste essa URL para o caminho correto da página de login
+
+
 
 
 

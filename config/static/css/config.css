@@ -1,0 +1,78 @@
+/* Layout geral */
+.config-container {
+    display: flex;
+    min-height: 80vh;
+    background-color: #f7f8fa;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+
+.sidebar ul li a.active {
+    font-weight: bold;
+    color: #000000;
+}
+
+/* Área de conteúdo */
+.config-content {
+    flex-grow: 1;
+    padding: 40px;
+}
+
+.config-content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-section {
+    margin-bottom: 20px;
+}
+
+.form-section label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.profile-image-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 10px;
+    border: 2px solid #ddd;
+}
+
+.btn-save {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-save:hover {
+    background-color: #0056b3;
+}

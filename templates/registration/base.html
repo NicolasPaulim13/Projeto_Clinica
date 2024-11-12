@@ -40,47 +40,36 @@
       <li class="nav-item"><a class="nav-link" href="{% url 'contatos' %}">Contatos</a></li>
       <li class="nav-item"><a class="nav-link" href="{% url 'sobrenos' %}">Sobre Nós</a></li>
 
-      <!-- Verifique se o usuário está autenticado -->
-      {% if user.is_authenticated and user.cadastroregistro %}
-      <li class="nav-item dropdown">
-        <!-- Nome do usuário como link para abrir o dropdown -->
-        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="perfilDropdown" role="button"
-          aria-expanded="false">
-          <!-- Ajuste a posição da imagem e do nome alterando a ordem aqui -->
-          <img class="perfil-imagem me-2" src="{% static 'img/perfil-icon.png' %}" alt="Imagem de Perfil">
-          Olá {{ user.cadastroregistro.nome_paciente|cut:" +1"|slice:"9" }}
-        </a>
-      
-        
-
-        <!-- Menu dropdown com opções de perfil -->
-        <ul class="dropdown-menu dropdown-menu-end" id="dropdownMenu" aria-labelledby="perfilDropdown">
-          <li class="dropdown-item-text">
-            <strong>{{ user.cadastroregistro.nome_paciente }}</strong>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-
-
-
-         
-          <!-- Outras opções de perfil -->
-          <li><a id="opcoes" class="dropdown-item" href="{% url 'config' %}"><img src="{% static 'img/config.png' %}" alt=""> - Configurações</a></li>
-          <li><a id="opcoes" class="dropdown-item" href="{% url 'consulta_list' %}"><img src="{% static 'img/consultas.png' %}" alt=""> -
-              Consultas</a></li>
-          
-          <li><a id="opcoes" class="dropdown-item" href="{% url 'logout' %}"><img src="{% static 'img/icon-sair.png' %}" alt=""> - Logout</a></li>
-        </ul>
-      </li>
-      {% else %}
-      <!-- Link para login caso o usuário não esteja autenticado -->
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'login' %}">Login</a>  
-      </li>
-      {% endif %}
-
-
+  <!-- Verifique se o usuário está autenticado -->
+{% if user.is_authenticated and user.perfil %}
+<li class="nav-item dropdown">
+  <!-- Nome do usuário como link para abrir o dropdown -->
+  <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="perfilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <!-- Verifica se o usuário possui uma imagem de perfil; caso contrário, mostra a imagem padrão -->
+    {% if user.perfil.imagem_perfil %}
+      <img class="perfil-imagem me-2" src="{{ user.perfil.imagem_perfil.url }}" alt="Imagem de Perfil" style="width: 30px; height: 30px; border-radius: 50%;">
+    {% else %}
+      <img class="perfil-imagem me-2" src="{% static 'img/perfil-icon.png' %}" alt="Imagem de Perfil" style="width: 30px; height: 30px; border-radius: 50%;">
+    {% endif %}
+    Olá {{ user.perfil.cadastro_registro.nome_paciente|cut:" +1"|slice:"9" }}
+  </a>
+  <!-- Menu dropdown com opções de perfil -->
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="perfilDropdown">
+    <li class="dropdown-item-text">
+      <strong>{{ user.perfil.cadastro_registro.nome_paciente }}</strong>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a id="opcoes" class="dropdown-item" href="{% url 'config' %}"><img src="{% static 'img/config.png' %}" alt=""> - Configurações</a></li>
+    <li><a id="opcoes" class="dropdown-item" href="{% url 'consulta_list' %}"><img src="{% static 'img/consultas.png' %}" alt=""> - Consultas</a></li>
+    <li><a id="opcoes" class="dropdown-item" href="{% url 'logout' %}"><img src="{% static 'img/icon-sair.png' %}" alt=""> - Logout</a></li>
+  </ul>
+</li>
+{% else %}
+<!-- Link para login caso o usuário não esteja autenticado -->
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'login' %}">Login</a>
+</li>
+{% endif %}
 
 
       <!-- Botão de Consulta -->

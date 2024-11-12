@@ -317,3 +317,39 @@ button:hover {
         margin: 20px 0;
     }
 }
+
+.carousel-container {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    max-width: 100%; /* opcional: limite para largura máxima */
+}
+
+/* Pista do carrossel com a animação */
+.carousel-track {
+    display: flex;
+    animation: scroll 20s linear infinite;
+}
+
+/* Itens do carrossel */
+.carousel-item {
+    min-width: 33.33%; /* Mostra três imagens ao mesmo tempo (ajuste para mais ou menos) */
+    box-sizing: border-box;
+    transition: transform 0.5s;
+    display: block;
+    margin-right: 0
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Animação de rolagem contínua */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+

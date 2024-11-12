@@ -1,41 +1,41 @@
 {% extends 'registration/base.html' %}
-
-{% block title %}Tratamentos - Sorriso Das Graças{% endblock %}
-
 {% load static %}
 
+{% block title %}Configurações - Sorriso Das Graças{% endblock %}
+
 {% block content %}
+<div class="config-container">
+    <!-- Sidebar Menu -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="{% url 'config' %}" class="active">Editar Perfil</a></li>
+        </ul>
+    </div>
 
-<div class="config-wrapper">
-    <h1>Configurações do Perfil</h1>
-    <form method="POST" enctype="multipart/form-data" id="perfilForm">
-        {% csrf_token %}
-    
-        <!-- Nome -->
-        <div class="form-section">
-            <label for="nome">Nome:</label>
-            {{ form.nome_paciente }}
-        </div>
-    
-        <!-- Imagem de Perfil -->
-        <div class="form-section">
-            <label for="imagem_perfil">Imagem de Perfil:</label>
-            {{ form.imagem_perfil }}
-            {% if perfil.imagem_perfil %}
-                <img id="previewImagem" src="{{ perfil.imagem_perfil.url }}" alt="Imagem de perfil" style="max-width: 100px; display: block;">
-            {% else %}
-                <img id="previewImagem" src="{% static 'images/default-profile.png' %}" alt="Imagem de perfil" style="max-width: 100px; display: block;">
-            {% endif %}
-        </div>
-    
-        <button type="submit" class="btn-save">Salvar Alterações</button>
-    </form>
-    
-    
+    <!-- Content Area -->
+    <div class="config-content">
+        <h1>Configurações do Perfil</h1>
+        <form method="POST" enctype="multipart/form-data" id="perfilForm">
+            {% csrf_token %}
+
+            <!-- Nome do Paciente -->
+            <div class="form-section">
+                <label for="nome">Nome:</label>
+                {{ form.nome_paciente }}
+            </div>
+
+            <!-- Imagem de Perfil -->
+            <div class="form-section">
+                <label for="imagem_perfil">Modificar:</label>
+                {{ form.imagem_perfil }}
+                {% if form.instance.imagem_perfil %}
+                    <img src="{{ form.instance.imagem_perfil.url }}" alt="Imagem Atual" class="profile-image-preview">
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn-save">Salvar Alterações</button>
+        </form>
+    </div>
 </div>
-
-<!-- Carregar o arquivo JavaScript -->
 <script src="{% static 'js/config.js' %}"></script>
-
-
 {% endblock %}

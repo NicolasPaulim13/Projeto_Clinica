@@ -1,17 +1,13 @@
+document.getElementById("id_imagem_perfil").addEventListener("change", function(event) {
+    const preview = document.querySelector(".profile-image-preview");
+    const file = event.target.files[0];
+    const reader = new FileReader();
 
-// Pré-visualização da imagem de perfil antes de enviar o formulário
-document.getElementById('id_imagem_perfil').addEventListener('change', function(event) {
-    const [file] = event.target.files;
+    reader.onload = function(e) {
+        preview.src = e.target.result;
+    };
+
     if (file) {
-        document.getElementById('previewImagem').src = URL.createObjectURL(file);
-    }
-});
-
-// Carregar o valor inicial do campo de acessibilidade
-document.addEventListener("DOMContentLoaded", function() {
-    const acessibilidade = "{{ form.initial.acessibilidade }}";
-    const select = document.getElementById("acessibilidadeSelect");
-    if (select) {
-        select.value = acessibilidade;
+        reader.readAsDataURL(file);
     }
 });

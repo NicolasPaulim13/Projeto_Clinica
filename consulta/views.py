@@ -25,9 +25,10 @@ def agendar_consulta(request):
         form = ConsultaForm(request.POST)
         if form.is_valid():
             consulta = form.save(commit=False)
-            consulta.paciente = paciente  
-            consulta.nome = paciente.nome_paciente
-            consulta.email = paciente.email_paciente
+            consulta.paciente = paciente  # Associa a consulta ao paciente logado
+            consulta.nome = paciente.nome_paciente  # Preenche com o nome do paciente
+            consulta.email = paciente.email_paciente  # Preenche com o email do paciente
+            consulta.medico = form.cleaned_data.get('medico')  # Associa o médico selecionado
             consulta.save()
             return redirect('consulta_list')
     else:
@@ -55,6 +56,7 @@ def listar_consultas(request):
 
     return render(request, 'consulta/consulta_list.html', {'consultas': consultas})
 
+
 @login_required(login_url='login')
 def editar_consulta(request, id):
     # Obtém a consulta pelo ID, verificando se existe
@@ -69,6 +71,7 @@ def editar_consulta(request, id):
         form = ConsultaForm(instance=consulta)
 
     return render(request, 'consulta/consulta_edit.html', {'form': form, 'consulta': consulta})
+
 
 @login_required(login_url='login')
 def deletar_consulta(request, id):

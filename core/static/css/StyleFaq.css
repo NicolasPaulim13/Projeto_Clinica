@@ -42,7 +42,8 @@
 body {
     font-family: Arial, sans-serif;
     background-color: white;
-    
+    overflow-x: hidden;
+
 }
 
 .container {
@@ -316,37 +317,57 @@ nav a:hover {
     position: relative;
     left: 35%;
 }
+.accordion {
+    width: 900vh;
+    max-width: 190vh; /* Aumenta a largura máxima da área do acordeão */
+    margin: 0 auto;
+}
 
+.accordion-item {
+    border: 1px solid #ccc;
+    margin: 15px 0; /* Aumenta o espaçamento entre as caixas */
+    border-radius: 10px;
+    overflow: hidden;
+}
 
-.pergunta {
-    font-size: 1.2em;
-    font-weight: bold;
+.accordion-button {
+    width: 100%;
+    padding: 20px; /* Aumenta o preenchimento interno, tornando o botão maior */
+    text-align: left;
+    background-color: #b2dae5 !important;
     cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    font-size: 18px; /* Aumenta o tamanho da fonte */
+    border: none;
+    outline: none;
+    font-weight: bold;
+}
+.accordion-button2{
+    width: 100%;
+    padding: 20px;
+    text-align: left;
+    background-color: #b2dae5 !important;
+    cursor: pointer;
+    font-size: 18px;
 }
 
-.resposta {
-    margin-top: 10px;
-    display: none;
-    font-size: 1em;
-    line-height: 1.5;
+.accordion-button:hover {
+    background-color: #78ABC3;
 }
 
-.resposta.active {
-    display: block;
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease; /* Aumenta o tempo da transição para um efeito mais suave */
+    background-color: #fff;
+    padding: 0 20px; /* Aumenta o preenchimento horizontal */
 }
 
-.icon {
-    transition: transform 0.3s ease;
+.accordion-content p {
+    padding: 20px 0; /* Aumenta o preenchimento vertical dentro do conteúdo */
+    margin: 0;
+    font-size: 16px; /* Aumenta o tamanho da fonte do conteúdo */
 }
 
-.icon.rotate {
-    transform: rotate(180deg);
-}
-
-/* rodapé */
 
 footer{
     background-color: rgba(221, 221, 221, 0.411);

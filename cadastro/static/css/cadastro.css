@@ -1,5 +1,12 @@
 /* Container principal do formulário de login */
 
+
+.augustoeidiota {
+    position: relative;
+    left: 35%;
+    margin-top: 5%;
+    width: 40%;
+}
 .tudis {
     position: relative;
     left: 35%;
