@@ -1,0 +1,35 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Confirmação de Código - Sorriso Das Graças{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div class="tudis">
+    <div class="login-container">
+        <!-- Logo da página -->
+        <img src="{% static 'img/email.png' %}" alt="Logo">
+        <!-- Título da página -->
+        <h2>Insira o Código Enviado por E-mail</h2>
+        <!-- Formulário de verificação -->
+        <form method="POST" action="{% url 'codigo_senha' %}">
+            {% csrf_token %}
+            <div class="Codigo">
+                <input type="text" id="codigo" name="codigo" placeholder="Código de Recuperação" required>
+            </div>
+            <div class="Email">
+                <input type="email" id="email" name="email_paciente" placeholder="Email" required>
+            </div>
+            <button type="submit">Verificar Código</button>
+        </form>
+        <!-- Exibição de mensagens -->
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
