@@ -1,22 +1,17 @@
 <!-- consulta/consulta.html -->
 {% extends 'registration/base.html' %} {% block content %}
+{% load static %}
 
 <div class="titulo_consulta">
-  <h1>Faça sua Consulta</h1>
+  <h1>Agende sua Consulta</h1>
   <div class="texto_consulta">
-    <a href="{% url 'index' %}">Home</a> /
-    <a href="{% url 'consulta' %}">Consulta</a>
+    <a href="{% url 'index' %}">Home</a> / <a href="{% url 'consulta' %}">Consulta</a>
   </div>
 </div>
 
 <div class="form-wrapper">
   <div class="card p-4 shadow-lg form-container">
-    <form
-      id="contactForm"
-      class="row g-3"
-      method="POST"
-      action="{% url 'consulta' %}"
-    >
+    <form method="POST" action="{% url 'consulta' %}">
       {% csrf_token %}
       <div class="col-12">
         <label for="nome" class="form-label">Nome:</label>
@@ -55,92 +50,60 @@
       <!-- Campo para selecionar o médico -->
       <div class="form-group col-12">
         <label for="medico" class="form-label">Selecione um médico:</label>
-        <select
-          name="medico"
-          id="medico"
-          class="form-control select-medico"
-          required
-        >
-          {% for medico in medicos %}
-          <option value="{{ medico.id }}">
-            {{ medico.first_name }} {{ medico.last_name }}
-          </option>
-          {% endfor %} {% if not medicos %}
-          <option value="" disabled>Nenhum médico disponível</option>
-          {% endif %}
+        <select name="medico" id="medico" class="form-control select-medico" required>
+            {% for medico in medicos %}
+            <option value="{{ medico.id }}">
+                {{ medico.get_full_name }}
+            </option>
+            {% endfor %}
+            {% if not medicos %}
+            <option value="" disabled>Nenhum médico disponível</option>
+            {% endif %}
         </select>
-      </div>
+    </div>
 
       <div class="col-12">
         <label for="assunto" class="form-label">Assunto:</label>
         <select name="assunto" class="form-control" id="assunto" required>
           <option value="avaliacao_diagnostico">Avaliação e Diagnóstico</option>
-          <option value="tratamentos_restauradores">
-            Tratamentos Restauradores
-          </option>
-          <option value="tratamentos_periodontais">
-            Tratamentos Periodontais
-          </option>
+          <option value="tratamentos_restauradores">Tratamentos Restauradores</option>
+          <option value="tratamentos_periodontais">Tratamentos Periodontais</option>
           <option value="odontopediatria">Odontopediatria</option>
           <option value="ortodontia">Ortodontia</option>
           <option value="odontologia_estetica">Odontologia Estética</option>
           <option value="cirurgia_oral">Cirurgia Oral</option>
           <option value="proteses_dentarias">Próteses Dentárias</option>
           <option value="consultas_emergencia">Consultas de Emergência</option>
-          <option value="acompanhamento_manutencao">
-            Acompanhamento e Manutenção
-          </option>
+          <option value="acompanhamento_manutencao">Acompanhamento e Manutenção</option>
         </select>
       </div>
 
       <div class="col-12">
         <label for="data_consulta" class="form-label">Data da Consulta:</label>
-        <input
-          type="date"
-          name="data_consulta"
-          class="form-control"
-          id="data_consulta"
-          required
-        />
+        <input type="date" name="data_consulta" class="form-control" id="data_consulta" required />
       </div>
 
       <div class="col-12">
         <label for="hora_consulta" class="form-label">Hora da Consulta:</label>
-        <select
-          name="hora_consulta"
-          class="form-control"
-          id="hora_consulta"
-          required
-        ></select>
+        <select name="hora_consulta" class="form-control" id="hora_consulta" required></select>
       </div>
 
       <div class="col-12">
         <label for="observacoes" class="form-label">Observações:</label>
-        <textarea
-          name="observacoes"
-          class="form-control"
-          id="observacoes"
-          rows="1"
-          placeholder=""
-        ></textarea>
+        <textarea name="observacoes" class="form-control" id="observacoes" rows="1"></textarea>
       </div>
 
       <div class="col-12 d-grid">
         <button type="submit" class="btn btn-primary">Agendar Consulta</button>
       </div>
     </form>
+
+    <!-- Debug de mensagens -->
+    {% if mensagem %}
+    <div class="alert alert-warning mt-3">{{ mensagem }}</div>
+    {% endif %}
   </div>
 </div>
 
-{% load static %}
 <script src="{% static 'js/consulta.js' %}"></script>
-
-{% if form.errors %}
-<div class="alert alert-danger mt-3">
-  <ul>
-    {% for field, errors in form.errors.items %}
-    <li>{{ field }}: {{ errors|join:", " }}</li>
-    {% endfor %}
-  </ul>
-</div>
-{% endif %} {% endblock %}
+{% endblock %}

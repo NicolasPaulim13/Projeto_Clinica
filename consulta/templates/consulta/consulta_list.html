@@ -11,8 +11,12 @@
     </div>
     <div class="mb-3">
         <a href="{% url 'consulta' %}" class="btn btn-primary">Novo Agendamento</a>
+        {% if user_is_medico %}
+            <a href="{% url 'relatorio' %}" class="btn btn-primary">Gerar Relatorio</a>
+        {% endif %}
+        
     </div>
-    
+
     <table class="table table-striped table-bordered">
         <thead class="table-light">
             <tr>
@@ -37,7 +41,8 @@
                     </a>
                     <!-- Ícone de exclusão -->
                     <a href="{% url 'consulta_delete' consulta.id %}">
-                        <img src="https://cdn-icons-png.flaticon.com/512/484/484611.png" alt="Excluir" width="20px" height="20px">
+                        <img src="https://cdn-icons-png.flaticon.com/512/484/484611.png" alt="Excluir" width="20px"
+                            height="20px">
                     </a>
                 </td>
             </tr>

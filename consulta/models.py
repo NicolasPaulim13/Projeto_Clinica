@@ -5,7 +5,7 @@ from django.conf import settings
 from datetime import time, date
 
 class Consulta(models.Model):
-    # Campos existentes
+    # Opções de assunto para a consulta
     ASSUNTO_OPCOES = [
         ('avaliacao_diagnostico', 'Avaliação e Diagnóstico'),
         ('tratamentos_restauradores', 'Tratamentos Restauradores'),
@@ -19,6 +19,7 @@ class Consulta(models.Model):
         ('acompanhamento_manutencao', 'Acompanhamento e Manutenção'),
     ]
 
+    # Campos existentes
     paciente = models.ForeignKey(CadastroRegistro, on_delete=models.CASCADE, null=True)
     nome = models.CharField(max_length=100, default="Nome Desconhecido")
     email = models.EmailField()
@@ -28,6 +29,9 @@ class Consulta(models.Model):
     hora_consulta = models.TimeField(default=time(8, 0))
     observacoes = models.TextField(blank=True, null=True)
     medico = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, limit_choices_to={'groups__name': 'medico'})
+
+    # Novo campo: exame realizado
+    exame_realizado = models.BooleanField(default=False, verbose_name="Exame Realizado")
 
     def __str__(self):
         return f'Consulta de {self.nome} em {self.data_consulta} às {self.hora_consulta}'

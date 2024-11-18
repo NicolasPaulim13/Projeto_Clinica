@@ -4,47 +4,56 @@ from django.contrib.auth.models import User, Group
 from django.http import HttpResponseForbidden
 from .forms import ConsultaForm
 from .models import Consulta
+from django.http import HttpResponse
 from cadastro_registro.models import CadastroRegistro
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
 
 @login_required(login_url='login')
 def agendar_consulta(request):
-    # Verifica se o usuário está autenticado e obtém o paciente associado
     try:
         paciente = CadastroRegistro.objects.get(user=request.user)
     except CadastroRegistro.DoesNotExist:
         return redirect('erro_paciente_nao_encontrado')
 
-    # Obtém todos os médicos do grupo "medico"
     try:
         grupo_medico = Group.objects.get(name='medico')
         medicos = User.objects.filter(groups=grupo_medico)
     except Group.DoesNotExist:
         medicos = []
 
+    print(f"Médicos encontrados: {[str(medico) for medico in medicos]}")  # Debug
+
     if request.method == 'POST':
         form = ConsultaForm(request.POST)
         if form.is_valid():
             consulta = form.save(commit=False)
-            consulta.paciente = paciente  # Associa a consulta ao paciente logado
-            consulta.nome = paciente.nome_paciente  # Preenche com o nome do paciente
-            consulta.email = paciente.email_paciente  # Preenche com o email do paciente
-            consulta.medico = form.cleaned_data.get('medico')  # Associa o médico selecionado
+            consulta.paciente = paciente
+            consulta.nome = paciente.nome_paciente
+            consulta.email = paciente.email_paciente
+            consulta.medico = form.cleaned_data.get('medico')
             consulta.save()
             return redirect('consulta_list')
     else:
         form = ConsultaForm()
 
-    return render(request, 'consulta/consulta.html', {'form': form, 'medicos': medicos})
+    context = {
+        'form': form,
+        'medicos': medicos,
+        'mensagem': "Nenhum médico disponível no momento." if not medicos else ""
+    }
+    return render(request, 'consulta/consulta.html', context)
 
 
 @login_required(login_url='login')
 def listar_consultas(request):
     # Obtém os grupos do usuário autenticado
     grupos_do_usuario = request.user.groups.values_list('name', flat=True)
+    user_is_medico = 'medico' in grupos_do_usuario  # Verifica se o usuário é médico
 
     if 'administrador' in grupos_do_usuario:
         consultas = Consulta.objects.all()
-    elif 'medico' in grupos_do_usuario:
+    elif user_is_medico:
         consultas = Consulta.objects.filter(medico=request.user)
     else:
         # Se o usuário é um paciente, exibe apenas suas consultas
@@ -54,7 +63,10 @@ def listar_consultas(request):
         except CadastroRegistro.DoesNotExist:
             return redirect('index')
 
-    return render(request, 'consulta/consulta_list.html', {'consultas': consultas})
+    return render(request, 'consulta/consulta_list.html', {
+        'consultas': consultas,
+        'user_is_medico': user_is_medico
+    })
 
 
 @login_required(login_url='login')
@@ -89,3 +101,31 @@ def deletar_consulta(request, id):
         return redirect('consulta_list')
 
     return render(request, 'consulta/consulta_delete.html', {'consulta': consulta})
+
+
+@login_required
+def relatorio(request):
+    return render(request, 'consulta/relatorio.html')
+
+
+@login_required
+def consulta_list(request):
+    # Obtém as consultas relacionadas ao usuário
+    grupos_do_usuario = request.user.groups.values_list('name', flat=True)
+    user_is_medico = 'medico' in grupos_do_usuario  # Verifica se o usuário é médico
+
+    if 'administrador' in grupos_do_usuario:
+        consultas = Consulta.objects.all()
+    elif user_is_medico:
+        consultas = Consulta.objects.filter(medico=request.user)
+    else:
+        try:
+            paciente = CadastroRegistro.objects.get(user=request.user)
+            consultas = Consulta.objects.filter(paciente=paciente)
+        except CadastroRegistro.DoesNotExist:
+            consultas = []
+
+    return render(request, 'consulta/consulta_list.html', {
+        'consultas': consultas,
+        'user_is_medico': user_is_medico,
+    })

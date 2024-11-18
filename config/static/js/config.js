@@ -19,3 +19,5 @@ document.addEventListener("DOMContentLoaded", function () {
     // Exibir "Editar Perfil" por padrão ao carregar a página
     showSection("editarPerfil");
 });
+
+

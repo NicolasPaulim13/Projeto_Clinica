@@ -1,10 +1,28 @@
 from django.contrib import admin
-from .models import Consulta  # Importando o modelo Consulta
+from .models import Consulta
 
-# Registrando o modelo Consulta no admin
 @admin.register(Consulta)
 class ConsultaAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'email', 'telefone', 'assunto', 'data_consulta', 'hora_consulta', 'observacoes')  # Campos a serem exibidos na lista de admin
-    search_fields = ('nome', 'email', 'telefone', 'assunto')  # Campos disponíveis para busca
+    list_display = ('nome', 'email', 'telefone', 'assunto', 'data_consulta', 'hora_consulta', 'observacoes', 'exame_realizado')
+    list_filter = ('data_consulta', 'assunto', 'exame_realizado')
+    search_fields = ('nome', 'email', 'telefone', 'assunto')
+    readonly_fields = ('nome', 'email', 'telefone')
+    list_per_page = 20
+    actions = ['marcar_exame_realizado']
 
-# Se você tiver outros modelos, registre-os aqui também
+    fieldsets = (
+        ('Informações do Paciente', {
+            'fields': ('nome', 'email', 'telefone')
+        }),
+        ('Detalhes da Consulta', {
+            'fields': ('assunto', 'data_consulta', 'hora_consulta', 'observacoes', 'exame_realizado')
+        }),
+        ('Médico Responsável', {
+            'fields': ('medico',)
+        }),
+    )
+
+    def marcar_exame_realizado(self, request, queryset):
+        queryset.update(exame_realizado=True)
+        self.message_user(request, "Consultas marcadas como realizadas com sucesso.")
+    marcar_exame_realizado.short_description = "Marcar exames como realizados"

@@ -1,0 +1,14 @@
+{% extends 'registration/base.html' %}
+{% block content %}
+
+{% load static %}
+
+<h1>Relatório de Consultas - Dr(a).</h1>
+
+<p><strong>Média de Idade dos Pacientes:</strong> {{ media_idade }}</p>
+<p><strong>Porcentagem de Homens:</strong> {{ porcentagem_m }}%</p>
+<p><strong>Porcentagem de Mulheres:</strong> {{ porcentagem_f }}%</p>
+<p><strong>Porcentagem de Exames Realizados:</strong> {{ porcentagem_exames }}%</p>
+
+
+{% endblock %}

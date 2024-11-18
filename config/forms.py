@@ -36,6 +36,10 @@ class PerfilForm(forms.ModelForm):
             cadastro.nome_paciente = self.cleaned_data.get('nome_paciente', cadastro.nome_paciente)
             cadastro.email_paciente = self.cleaned_data.get('email_paciente', cadastro.email_paciente)
             cadastro.cpf_paciente = self.cleaned_data.get('cpf_paciente', cadastro.cpf_paciente)
+
+            if not cadastro.cpf_paciente:
+                raise ValueError("O CPF não pode ser vazio.")
+
             cadastro.data_nascimento_paciente = self.cleaned_data.get(
                 'data_nascimento_paciente', cadastro.data_nascimento_paciente
             )
