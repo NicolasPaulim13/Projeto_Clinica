@@ -42,27 +42,35 @@
             </form>
         </div>
 
-        <!-- Seção de Informações Pessoais -->
-        <div id="informacoesPessoais" class="config-section">
-            
-            <form>
-                <div class="form-section">
-                    <h2>Informações Pessoais</h2>
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" value="{{ perfil.email }}" readonly>
-                </div>
-                <div class="form-section">
-                    <label for="cpf">CPF:</label>
-                    <input type="text" name="cpf" value="{{ perfil.cpf }}" readonly>
-                </div>
-                <div class="form-section">
-                    <label for="sexo">Sexo:</label>
-                    <input type="text" name="sexo" value="{{ perfil.sexo }}" readonly>
-                </div>
-            </form>
+      <!-- Seção de Informações Pessoais -->
+<div id="informacoesPessoais" class="config-section">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-section">
+            <h2>Informações Pessoais</h2>
+            <label for="email">Email:</label>
+            <input type="email" name="email" value="{{ cadastro.email_paciente }}" required>
         </div>
-    </div>
+        <div class="form-section">
+            <label for="cpf">CPF:</label>
+            <input type="text" name="cpf" value="{{ cadastro.cpf_paciente }}" required>
+        </div>
+        <div class="form-section">
+            <label for="sexo">Sexo:</label>
+            <select name="sexo" required>
+                <option value="M" {% if cadastro.sexo_paciente == "M" %}selected{% endif %}>Masculino</option>
+                <option value="F" {% if cadastro.sexo_paciente == "F" %}selected{% endif %}>Feminino</option>
+                <option value="O" {% if cadastro.sexo_paciente == "O" %}selected{% endif %}>Outro</option>
+            </select>
+        </div>
+        <div class="form-section">
+            <label for="data_nascimento">Data de Nascimento:</label>
+            <input type="date" name="data_nascimento" value="{{ cadastro.data_nascimento_paciente }}" required>
+        </div>
+        <button type="submit" class="btn-save">Salvar Alterações</button>
+    </form>
 </div>
+
 
 <script src="{% static 'js/config.js' %}"></script>
 {% endblock %}

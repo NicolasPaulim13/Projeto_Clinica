@@ -1,13 +1,16 @@
-# forms.py
 from django import forms
 from .models import Perfil
 from cadastro_registro.models import CadastroRegistro
+from django.contrib.auth.hashers import make_password
 
 class PerfilForm(forms.ModelForm):
     nome_paciente = forms.CharField(max_length=100, required=True, label="Nome")
     email_paciente = forms.EmailField(required=True, label="Email")
     cpf_paciente = forms.CharField(max_length=11, required=True, label="CPF")
-    data_nascimento_paciente = forms.DateField(required=True, label="Data de Nascimento")
+    data_nascimento_paciente = forms.DateField(
+        required=True, label="Data de Nascimento",
+        widget=forms.DateInput(attrs={'type': 'date'})
+    )
     senha_paciente = forms.CharField(widget=forms.PasswordInput(), required=True, label="Senha")
 
     class Meta:
@@ -26,13 +29,24 @@ class PerfilForm(forms.ModelForm):
 
     def save(self, commit=True):
         perfil = super().save(commit=False)
-        cadastro = perfil.cadastro_registro
-        cadastro.nome_paciente = self.cleaned_data['nome_paciente']
-        cadastro.email_paciente = self.cleaned_data['email_paciente']
-        cadastro.cpf_paciente = self.cleaned_data['cpf_paciente']
-        cadastro.data_nascimento_paciente = self.cleaned_data['data_nascimento_paciente']
-        cadastro.senha_paciente = self.cleaned_data['senha_paciente']
-        cadastro.save()
+
+        # Atualizar os campos do CadastroRegistro
+        if perfil.cadastro_registro:
+            cadastro = perfil.cadastro_registro
+            cadastro.nome_paciente = self.cleaned_data.get('nome_paciente', cadastro.nome_paciente)
+            cadastro.email_paciente = self.cleaned_data.get('email_paciente', cadastro.email_paciente)
+            cadastro.cpf_paciente = self.cleaned_data.get('cpf_paciente', cadastro.cpf_paciente)
+            cadastro.data_nascimento_paciente = self.cleaned_data.get(
+                'data_nascimento_paciente', cadastro.data_nascimento_paciente
+            )
+
+            # Hash da senha (caso ela seja alterada)
+            senha_paciente = self.cleaned_data.get('senha_paciente')
+            if senha_paciente and senha_paciente != cadastro.senha_paciente:
+                cadastro.senha_paciente = make_password(senha_paciente)
+
+            cadastro.save()
+
         if commit:
             perfil.save()
         return perfil
