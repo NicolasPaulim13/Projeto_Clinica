@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
   senhaInput.addEventListener("input", verificarRequisitos);
 });
 
-document.getElementById('cpf').addEventListener('input', function (event) {
+document.getElementById('cpf_paciente').addEventListener('input', function (event) {
   let value = event.target.value.replace(/\D/g, ''); // Remove qualquer caractere não numérico
   if (value.length > 3) value = value.replace(/^(\d{3})(\d)/, '$1.$2');
   if (value.length > 6) value = value.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
