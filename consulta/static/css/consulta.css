@@ -371,3 +371,10 @@ button[type="submit"]:hover {
         border-bottom: 1px solid #e0e0e0;
     }
 }
+
+
+.iniciar-consulta img{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}

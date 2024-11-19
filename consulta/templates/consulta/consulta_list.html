@@ -10,11 +10,13 @@
         <h2>Minhas Consultas</h2>
     </div>
     <div class="mb-3">
+        {% if user_is_paciente %}
         <a href="{% url 'consulta' %}" class="btn btn-primary">Novo Agendamento</a>
-        {% if user_is_medico %}
-            <a href="{% url 'relatorio' %}" class="btn btn-primary">Gerar Relatorio</a>
         {% endif %}
-        
+        {% if user_is_medico %}
+        <a href="{% url 'relatorio' %}" class="btn btn-primary">Gerar Relatorio</a>
+        {% endif %}
+
     </div>
 
     <table class="table table-striped table-bordered">
@@ -35,6 +37,7 @@
                 <td>{{ consulta.hora_consulta|time:"H:i" }}</td>
                 <td>{{ consulta.observacoes }}</td>
                 <td>
+                    {% if user_is_paciente %}
                     <!-- Ícone de edição -->
                     <a href="{% url 'consulta_edit' consulta.id %}">
                         <img src="{% static 'img/editor-de-texto.png' %}" alt="Editar" width="20px" height="20px">
@@ -44,6 +47,14 @@
                         <img src="https://cdn-icons-png.flaticon.com/512/484/484611.png" alt="Excluir" width="20px"
                             height="20px">
                     </a>
+                    {% endif %}
+                
+                    {% if user_is_medico %}
+                    <a class="iniciar-consulta" href="{% url 'prontuario' %}">
+                        <img src="{% static 'img/img_iniciar.png' %}" alt="" width="20px" height="20px">
+                    </a>
+                    {% endif %}
+
                 </td>
             </tr>
             {% empty %}

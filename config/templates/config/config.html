@@ -8,74 +8,67 @@
     <!-- Sidebar com as opções -->
     <div class="config-sidebar">
         <ul>
-            <li class="config-option" data-section="editarPerfil"><a href="#">Editar Perfil</a></li>
-            <li class="config-option" data-section="informacoesPessoais"><a href="#">Informações Pessoais</a></li>
+            <li class="config-option" data-section="editarPerfil">
+                <a href="#">Editar Perfil</a>
+            </li>
+            <li class="config-option" data-section="informacoesPessoais">
+                <a href="#">Informações Pessoais</a>
+            </li>
         </ul>
     </div>
 
-    <!-- Área de conteúdo das configurações -->
+    <!-- Área de conteúdo -->
     <div class="config-content">
-        
-
-        <!-- Seção de Editar Perfil -->
+        <!-- Seção Editar Perfil -->
         <div id="editarPerfil" class="config-section active">
+            <h1>Editar Perfil</h1>
             <form method="POST" enctype="multipart/form-data" id="perfilForm">
                 {% csrf_token %}
-                
-                <!-- Nome do Paciente -->
                 <div class="form-section">
-                    <h1>Editar Perfil</h1>
-                    <label for="nome">Nome:</label>
+                    <label for="nome_paciente">Nome:</label>
                     {{ form.nome_paciente }}
                 </div>
-
-                <!-- Imagem de Perfil -->
                 <div class="form-section">
-                    <label for="imagem_perfil">Modificar:</label>
+                    <label for="imagem_perfil">Modificar Imagem:</label>
                     {{ form.imagem_perfil }}
                     {% if form.instance.imagem_perfil %}
                         <img src="{{ form.instance.imagem_perfil.url }}" alt="Imagem Atual" class="profile-image-preview">
                     {% endif %}
                 </div>
-
-                <button type="submit" name="submit_perfil" class="btn-save">Salvar Alterações</button>
-
+                <button type="submit" class="btn-save">Salvar Alterações</button>
             </form>
         </div>
 
-      <!-- Seção de Informações Pessoais -->
-      <div id="informacoesPessoais" class="config-section">
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-section">
-                <h2>Informações Pessoais</h2>
-                <label for="email">Email:</label>
-                <input type="email" name="email_paciente" value="{{ cadastro.email_paciente }}" required>
-            </div>
-            <div class="form-section">
-                <label for="cpf">CPF:</label>
-                <input type="text" name="cpf_paciente" value="{{ cadastro.cpf_paciente }}" required>
-            </div>
-            <div class="form-section">
-                <label for="sexo">Sexo:</label>
-                <select name="sexo_paciente" required>
-                    <option value="M" {% if cadastro.sexo_paciente == "M" %}selected{% endif %}>Masculino</option>
-                    <option value="F" {% if cadastro.sexo_paciente == "F" %}selected{% endif %}>Feminino</option>
-                    <option value="O" {% if cadastro.sexo_paciente == "O" %}selected{% endif %}>Outro</option>
-                </select>
-            </div>
-            <div class="form-section">
-                <label for="data_nascimento">Data de Nascimento:</label>
-                <input type="date" name="data_nascimento_paciente" 
-                       value="{{ cadastro.data_nascimento_paciente|date:'Y-m-d' }}" required>
-            </div>
-            
-            <button type="submit" name="submit_info" class="btn-save">Salvar Alterações</button>
-        </form>
+        <!-- Seção Informações Pessoais -->
+        <div id="informacoesPessoais" class="config-section">
+            <h1>Informações Pessoais</h1>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-section">
+                    <label for="email_paciente">Email:</label>
+                    <input type="email" name="email_paciente" value="{{ cadastro.email_paciente }}" required>
+                </div>
+                <div class="form-section">
+                    <label for="cpf_paciente">CPF:</label>
+                    <input type="text" name="cpf_paciente" value="{{ cadastro.cpf_paciente }}" required>
+                </div>
+                <div class="form-section">
+                    <label for="sexo_paciente">Sexo:</label>
+                    <select name="sexo_paciente" required>
+                        <option value="M" {% if cadastro.sexo_paciente == "M" %}selected{% endif %}>Masculino</option>
+                        <option value="F" {% if cadastro.sexo_paciente == "F" %}selected{% endif %}>Feminino</option>
+                        <option value="O" {% if cadastro.sexo_paciente == "O" %}selected{% endif %}>Outro</option>
+                    </select>
+                </div>
+                <div class="form-section">
+                    <label for="data_nascimento_paciente">Data de Nascimento:</label>
+                    <input type="date" name="data_nascimento_paciente" value="{{ cadastro.data_nascimento_paciente }}" required>
+                </div>
+                <button type="submit" class="btn-save">Salvar Alterações</button>
+            </form>
+        </div>
     </div>
-    
-
+</div>
 
 <script src="{% static 'js/config.js' %}"></script>
 {% endblock %}
-

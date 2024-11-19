@@ -1,0 +1,80 @@
+{% extends 'registration/base.html' %}
+{% block content %}
+
+{% load static %}
+
+<div class="container-prontuario">
+    <h1 class="h1-prontuario">Prontuário Odontológico</h1>
+    <section>
+        <h2 class="h2-prontuario">1. Identificação do Paciente</h2>
+        <ul>
+            <li><strong>Nome Completo:</strong> 
+                <input type="text" name="nome_paciente" value="{{ consulta.nome_paciente }}" placeholder="Nome Completo" required />
+            </li>
+            <li><strong>Data de Nascimento/Idade:</strong> 
+                <input type="date" name="data_nascimento" value="{{ request.POST.data_nascimento|default:'' }}" placeholder="Data de Nascimento" required />
+            </li>
+            <li><strong>Gênero:</strong> 
+                <select name="genero" required>
+                    <option value="masculino" {% if request.POST.genero == "masculino" %}selected{% endif %}>Masculino</option>
+                    <option value="feminino" {% if request.POST.genero == "feminino" %}selected{% endif %}>Feminino</option>
+                    <option value="outro" {% if request.POST.genero == "outro" %}selected{% endif %}>Outro</option>
+                </select>
+            </li>
+            <li><strong>Endereço e Contato:</strong> 
+                <input type="text" name="endereco_contato" value="{{ request.POST.endereco_contato|default:'' }}" placeholder="Endereço e Contato" required />
+            </li>
+            <li><strong>Documento de Identificação:</strong>
+                <input type="text" name="documento_identificacao" value="{{ request.POST.documento_identificacao|default:'' }}" placeholder="Documento de Identificação" id="rg" required />
+            </li>            
+        </ul>
+    </section>
+    <section>
+        <h2 class="h2-prontuario">2. Histórico Médico e Odontológico</h2>
+        <ul>
+            <li><strong>Condições de Saúde Geral:</strong> 
+                <input type="text" name="condicoes_saude" value="{{ request.POST.condicoes_saude|default:'' }}" placeholder="Condições de Saúde" required />
+            </li>
+            <li><strong>Cirurgias Anteriores:</strong> 
+                <input type="text" name="cirurgias_anteriores" value="{{ request.POST.cirurgias_anteriores|default:'' }}" placeholder="Cirurgias Anteriores" required />
+            </li>
+            <li><strong>Histórico de Tratamentos Odontológicos:</strong> 
+                <input type="text" name="historico_tratamentos" value="{{ request.POST.historico_tratamentos|default:'' }}" placeholder="Histórico de Tratamentos" required />
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h2 class="h2-prontuario">3. Exame Clínico Odontológico</h2>
+        <ul>
+            <li><strong>Avaliação da Cavidade Bucal:</strong> 
+                <input type="text" name="avaliacao_cavidade" value="{{ request.POST.avaliacao_cavidade|default:'' }}" placeholder="Avaliação da Cavidade Bucal" required />
+            </li>
+            <li><strong>Presença de Lesões ou Anomalias:</strong> 
+                <input type="text" name="lesoes_anomalias" value="{{ request.POST.lesoes_anomalias|default:'' }}" placeholder="Lesões ou Anomalias" required />
+            </li>
+            <li><strong>Queixas Principais do Paciente:</strong> 
+                <input type="text" name="queixas_principais" value="{{ request.POST.queixas_principais|default:'' }}" placeholder="Queixas Principais" required />
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h2 class="h2-prontuario">4. Plano de Tratamento</h2>
+        <ul>
+            <li><strong>Diagnóstico Detalhado:</strong> 
+                <input type="text" name="diagnostico_detalhado" value="{{ request.POST.diagnostico_detalhado|default:'' }}" placeholder="Diagnóstico Detalhado" required />
+            </li>
+            <li><strong>Procedimentos Planejados:</strong> 
+                <input type="text" name="procedimentos_planejados" value="{{ request.POST.procedimentos_planejados|default:'' }}" placeholder="Procedimentos Planejados" required />
+            </li>
+        </ul>
+    </section>
+    <br>
+    <br>
+    <section class="finalizar">
+        <button class="btn-finalizar">Finalizar Consulta</button>
+    </section>
+</div>
+
+<script src="{% static 'js/prontuario.js' %}"></script>
+
+{% endblock %}

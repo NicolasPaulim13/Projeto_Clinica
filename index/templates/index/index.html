@@ -4,25 +4,25 @@
 {% block content %}
 
 <head>
-       
-                    
-                    <script>
-                    // Obtém o botão e o toast
-                    var toastTrigger = document.getElementById('liveToastBtn');
-                    var toastLiveExample = document.getElementById('liveToast');
-                    
-                    // Verifica se o botão existe na página
-                    if (toastTrigger) {
-                        toastTrigger.addEventListener('click', function () {
-                            var toast = new bootstrap.Toast(toastLiveExample);
-                            toast.show();
-                        });
-                    }
-                    </script>
-                    
-                </div>
-            </div>
-        </div>
+
+
+    <script>
+        // Obtém o botão e o toast
+        var toastTrigger = document.getElementById('liveToastBtn');
+        var toastLiveExample = document.getElementById('liveToast');
+
+        // Verifica se o botão existe na página
+        if (toastTrigger) {
+            toastTrigger.addEventListener('click', function () {
+                var toast = new bootstrap.Toast(toastLiveExample);
+                toast.show();
+            });
+        }
+    </script>
+
+    </div>
+    </div>
+    </div>
     </header>
     <section class="parte1">
         <div class="conteudo-home">
@@ -34,100 +34,107 @@
             <button type="button" class="btn btn-outline-primary">Saiba Mais</button>
         </div>
     </section>
-    
+
 
     <section class="parte2">
         <div class="imagekid">
-          <img src="{% static  'img/crianca.jpg' %}" alt="">
+            <img src="{% static  'img/crianca.jpg' %}" alt="">
         </div>
         <div class="textkid">
-          <h2>Por que você deve escolher nosso serviço odontológico?</h2>
-          <p>Descubra por que nosso serviço odontológico se destaca dos demais. Da nossa equipe experiente ao nosso equipamento de última geração, oferecemos atendimento excepcional para todas as suas necessidades odontológicas.</p>
+            <h2>Por que você deve escolher nosso serviço odontológico?</h2>
+            <p>Descubra por que nosso serviço odontológico se destaca dos demais. Da nossa equipe experiente ao nosso
+                equipamento de última geração, oferecemos atendimento excepcional para todas as suas necessidades
+                odontológicas.</p>
         </div>
-      </section>
+    </section>
 
-      <section class="parte3">
+    <section class="parte3">
 
         <div class="card_vantagens">
             <div class="card">
                 <h3>Equipe Especializada e Qualificada</h3>
-                <p>Nossa equipe é formada por profissionais super experientes que entendem tudo sobre o que fazem. Eles estão sempre aprendendo coisas novas para te oferecer o melhor atendimento.</p>
+                <p>Nossa equipe é formada por profissionais super experientes que entendem tudo sobre o que fazem. Eles
+                    estão sempre aprendendo coisas novas para te oferecer o melhor atendimento.</p>
             </div>
             <div class="card">
                 <h3>Equipe Especializada e Qualificada</h3>
-                <p>Com a nossa tecnologia de ponta, seus problemas são resolvidos mais rápido e com mais precisão. Nossa infraestrutura moderna garante um atendimento mais eficiente e confortável para você.</p>
+                <p>Com a nossa tecnologia de ponta, seus problemas são resolvidos mais rápido e com mais precisão. Nossa
+                    infraestrutura moderna garante um atendimento mais eficiente e confortável para você.</p>
             </div>
         </div>
 
 
-      </section>
+    </section>
 
-      <section class="parte4"> 
+    <section class="parte4">
         <div class="titulo">
             <h2>Planos</h2>
         </div>
-    
-        
-            <article class="plano">
-                <div class="plano-header">Plano Individual</div>
-                <div class="plano-body">
-                    <p class="preco">$ 39,99</p>
-                    <p>/mês</p>
-                    <button>Saiba mais</button>
-                </div>
-            </article>
-    
-            <article class="plano">
-                <div class="plano-header">Plano Família</div>
-                <div class="plano-body">
-                    <p class="preco">$ 249,99</p>
-                    <p>/mês</p>
-                    <button>Saiba mais</button>
-                </div>
-            </article>
-    
-            <article class="plano">
-                <div class="plano-header">Plano Premium</div>
-                <div class="plano-body">
-                    <p class="preco">$ 99,99</p>
-                    <p>/mês</p>
-                    <button>Saiba mais</button>
-                </div>
-            </article>
-       
 
 
-      </section>
+        <article class="plano">
+            <div class="plano-header">Plano Individual</div>
+            <div class="plano-body">
+                <p class="preco">$ 39,99</p>
+                <p>/mês</p>
+                <button>Saiba mais</button>
+            </div>
+        </article>
+
+        <article class="plano">
+            <div class="plano-header">Plano Família</div>
+            <div class="plano-body">
+                <p class="preco">$ 249,99</p>
+                <p>/mês</p>
+                <button>Saiba mais</button>
+            </div>
+        </article>
+
+        <article class="plano">
+            <div class="plano-header">Plano Premium</div>
+            <div class="plano-body">
+                <p class="preco">$ 99,99</p>
+                <p>/mês</p>
+                <button>Saiba mais</button>
+            </div>
+        </article>
 
 
-    <div class="planos">
+
+    </section>
+
+
+    <div class="convenios">
         <h1>Confira os Convênios Aceitos na Clínica</h1>
+        <br>
+        <br>
         <div class="carousel-container">
             <div class="carousel-track">
                 <!-- Imagens do carrossel -->
                 <div class="carousel-item">
-                    <img src="{% static  'img/amil.png' %}" alt="Imagem 1">
+                    <img src="{% static  'img/img_home1.jpg' %}" alt="Imagem 1">
                 </div>
                 <div class="carousel-item">
-                    <img src="{% static  'img/bradesco.png' %}" alt="Imagem 2">
+                    <img src="{% static  'img/img_home2.jpg' %}" alt="Imagem 2">
                 </div>
                 <div class="carousel-item">
-                    <img src="{% static  'img/notre.png' %}" alt="Imagem 3">
+                    <img src="{% static  '/img/img_home3.jpg' %}" alt="Imagem 3">
                 </div>
                 <div class="carousel-item">
-                    <img src="{% static  'img/prevent.jfif' %}" alt="Imagem 4">
+                    <img src="{% static  'img/img_home4.jpg' %}" alt="Imagem 4">
                 </div>
                 <div class="carousel-item">
-                    <img src="{% static  'img/unimed.png' %}" alt="Imagem 5">
+                    <img src="{% static  'img/img_home5.jpg' %}" alt="Imagem 5">
                 </div>
                 <!-- Duplicar as imagens para um efeito de loop contínuo -->
-                <div class="carousel-item"><img src="{% static  'img/amil.png' %}" alt="Imagem 1"></div>
-                <div class="carousel-item"><img src="{% static  'img/bradesco.png' %}" alt="Imagem 2"></div>
-                <div class="carousel-item"><img src="{% static  'img/notre.png' %}" alt="Imagem 3"></div>
-                <div class="carousel-item"><img src="{% static  'img/prevent.jfif' %}" alt="Imagem 4"></div>
-                <div class="carousel-item"><img src="{% static  'img/unimed.png' %}" alt="Imagem 5"></div>
+                <div class="carousel-item"><img src="{% static  'img/img_home1.jpg' %}" alt="Imagem 1"></div>
+                <div class="carousel-item"><img src="{% static  'img/img_home2.jpg' %}" alt="Imagem 2"></div>
+                <div class="carousel-item"><img src="{% static  'img/img_home3.jpg' %}" alt="Imagem 3"></div>
+                <div class="carousel-item"><img src="{% static  'img/img_home4.jpg' %}" alt="Imagem 4"></div>
+                <div class="carousel-item"><img src="{% static  'img/img_home5.jpg' %}" alt="Imagem 5"></div>
             </div>
         </div>
     </div>
-    
+
+
     {% endblock %}

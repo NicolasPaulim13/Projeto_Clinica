@@ -4,7 +4,7 @@
 }
 
 @font-face {
-    font-famaily: "Roboto Flex";
+    font-family: "Roboto Flex";
     src: url("/static/fonts/RobotoFlex-Regular.ttf");
 }
 
@@ -42,8 +42,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: white;
-    overflow-x: hidden;
-
+    
 }
 
 .container {
@@ -317,288 +316,177 @@ nav a:hover {
     position: relative;
     left: 35%;
 }
-.accordion {
-    width: 900vh;
-    max-width: 190vh; /* Aumenta a largura máxima da área do acordeão */
-    margin: 0 auto;
-}
 
-.accordion-item {
-    border: 1px solid #ccc;
-    margin: 15px 0; /* Aumenta o espaçamento entre as caixas */
-    border-radius: 10px;
-    overflow: hidden;
-}
 
-.accordion-button {
-    width: 100%;
-    padding: 20px; /* Aumenta o preenchimento interno, tornando o botão maior */
-    text-align: left;
-    background-color: #b2dae5 !important;
-    cursor: pointer;
-    font-size: 18px; /* Aumenta o tamanho da fonte */
-    border: none;
-    outline: none;
+.pergunta {
+    font-size: 1.2em;
     font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-
-.accordion-button:hover {
-    background-color: #78ABC3;
+.resposta {
+    margin-top: 10px;
+    display: none;
+    font-size: 1em;
+    line-height: 1.5;
 }
 
-.accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease; /* Aumenta o tempo da transição para um efeito mais suave */
-    background-color: #fff;
-    padding: 0 20px; /* Aumenta o preenchimento horizontal */
+.resposta.active {
+    display: block;
 }
 
-.accordion-content p {
-    padding: 20px 0; /* Aumenta o preenchimento vertical dentro do conteúdo */
-    margin: 0;
-    font-size: 16px; /* Aumenta o tamanho da fonte do conteúdo */
+.icon {
+    transition: transform 0.3s ease;
 }
 
+.icon.rotate {
+    transform: rotate(180deg);
+}
 
-footer{
+/* Rodapé */
+footer {
     background-color: rgba(221, 221, 221, 0.411);
     border-top-left-radius: 3em;
     border-top-right-radius: 3em;
     padding: 3rem 2rem;
 }
 
-.container-footer{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+.container-footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Cria 4 colunas de tamanhos iguais */
+    gap: 2rem; /* Espaçamento consistente entre os elementos */
+    text-align: center;
+    justify-items: center; /* Centraliza os itens em cada coluna */
 }
 
-.nome-footer h1{
-    font-family:  "Poppins", sans-serif;
-    font-weight: 700;
-    width: 30%;
+@media (max-width: 768px) {
+    .container-footer {
+        grid-template-columns: repeat(2, 1fr); /* Reduz para 2 colunas em telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .container-footer {
+        grid-template-columns: 1fr; /* Seções empilhadas em telas pequenas */
+    }
+}
+
+
+.nome-footer {
+    flex: 1 1 100%; /* Largura responsiva */
+    margin-bottom: 1rem;
     text-align: center;
 }
 
-.nome-footer{
-    width: 10%;
+.nome-footer h1 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
 }
-.redes-sociais{
+
+.redes-sociais {
     display: flex;
+    justify-content: center; /* Alinhamento centralizado */
+    gap: 1rem; /* Espaçamento entre ícones */
+    margin-top: 1rem;
+}
+
+.redes-sociais svg {
+    width: 2.5rem;
+    height: 2.5rem;
     color: #898989;
-    justify-content: flex-start;
-    margin-top: 1rem;   
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.redes-sociais svg{
-    width: 1.8rem;
-    height: 1.8rem;
-    width: 3.7rem;
-    position: relative;
-    left: -0.6rem;
-}
-
-.facebook svg:hover,
-.linkedin svg:hover,
-.twitter svg:hover,
-.email svg:hover{
+.redes-sociais svg:hover {
     color: rgb(53, 90, 175);
     transform: scale(1.3);
-    transition: 800ms;
 }
 
-.services, .about, .store{
-    margin-top: 1rem;
-    margin-right: 100px;
+.services, .about, .store {
+    flex: 1 1 300px; /* Largura responsiva para cada bloco */
+    margin: 0; /* Remove margens fixas */
 }
 
-.services h1, .about h1, .store h1{
-    font-family: "Montserrat Regular";
+.services h1, .about h1, .store h1 {
+    font-family: "Montserrat", sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
+    margin-bottom: 1rem;
 }
 
-.services a, .about a, .store a{
-    font-family: "Inter Regular";
+.services a, .about a, .store a {
+    font-family: "Inter", sans-serif;
     color: black;
     text-decoration: none;
-    display: flex;
-    flex-direction: column;
     margin-bottom: 0.8rem;
+    transition: color 0.3s ease;
 }
 
-.services a:hover, .about a:hover{
+.services a:hover, .about a:hover {
     color: #3a5bcccc;
-    transition: 500ms;
 }
 
-.store img{
-    width: 14%;
+.store img {
+    width: 100%; /* Ajuste automático da largura */
+    max-width: 150px; /* Tamanho máximo para evitar imagens grandes */
+    margin-top: 1rem;
 }
 
-.copyright{
-    color: rgb(0, 0, 0);
-    display: flex;
-    justify-content: center;
+.copyright {
+    color: black;
     margin-top: 2rem;
+    text-align: center;
 }
 
-.copyright h1{
-    font-size: 0.9em;
+.copyright h1 {
+    font-size: 0.9rem;
 }
 
-/* Responsividade para o rodapé */
+/* Responsividade */
 @media (max-width: 768px) {
     .container-footer {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        gap: 2rem;
     }
 
     .nome-footer h1 {
-        width: 100%;
-        margin-bottom: 1rem;
-    position: relative;
-    right: 160%;
-    text-align: center;
-    }
-
-    .services, .about, .store {
-        width: 100%;
-        margin-top: 2rem;
-    }
-
-    .services h1, .about h1, .store h1 {
-        font-size: 1.3rem;
-        
-    }
-
-    .services a, .about a {
-        align-items: center;
+        font-size: 1.2rem;
     }
 
     .store img {
-        width: 20%;
-        margin-top: 1rem;
+        max-width: 100px; /* Reduz tamanho em telas menores */
     }
 }
 
 @media (max-width: 480px) {
     .redes-sociais {
         justify-content: center;
+        gap: 0.5rem; /* Reduz espaço entre ícones */
     }
 
     .services h1, .about h1, .store h1 {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .store img {
-        width: 30%;
+        max-width: 80px;
     }
 
     .copyright h1 {
-        font-size: 0.8em;
+        font-size: 0.8rem;
     }
 }
 
-.password-container {
-    display: flex;
-    align-items: center;
-}
-
-#togglePassword {
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-.conteudo h1{
-    font-family: "Poppins Regular";
-    color: #343A40;
-    text-align: center;
-    
-}
-
-.conteudo p{
-    font-family: "Roboto Flex";
-    font-size: 0.8rem;
-    text-align: center;
-}
-
-.botoes{
-    display: flex;
-    justify-content: center;
-    gap: 1em;
-    margin-top: 2em;
-}
-
-button[type="submit"] {
-    background-color: #78ABC3;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 10vh;
-    padding: 15px 20px;
-    cursor: pointer;
-    font-family: "Roboto Flex";
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-button[type="submit"]:hover {
-    background-color: #69C4D3;
-}
-
-button[type="reset"] {
-    background-color: #F8F9FA;
-    color: #343A40;
-    border: 1px solid #343A40;
-    border-radius: 10vh;
-    padding: 15px 20px;
-    cursor: pointer;
-    font-family: "Roboto Flex";
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-button[type="reset"]:hover {
-    background-color: #E2E6EA;
-}
-
-.hamburger-menu button:hover{
-    background-color: transparent;
-    color: transparent;
-}
-
-
-
-/* Estilização do botão de perfil */
-.perfil-imagem {
-    width: 28px;
-    height: 28px;
-    padding: 3px;
-    border: 1.3px solid #000000;
-    border-radius: 50%;
-}
-
-#dropdownMenu{
-    background-color: white
-}
-
-#dropdownMenu a {
-    transition: background-color 900ms;
-}
-
-#dropdownMenu a:hover {
-    background-color: rgb(183, 183, 183);
-}
 
 /* Estilização do dropdown */
 .dropdown-menu {
     display: none;
     position: absolute;
     top: 100%;
-    left: p;
     z-index: 1000;
     min-width: 10rem;
     padding: 0.5rem 0;
@@ -641,27 +529,7 @@ button[type="reset"]:hover {
     width: 16px;
     height: 16px;
     margin-right: 10px;
-    background-color: red; /* Para identificar facilmente */
 }
-
-@media (max-width: 768px) {
-    .dropdown-item .icon {
-        width: 14px;
-        height: 14px;
-        margin-right: 8px;
-        background-color: blue; /* Para visualizar a mudança */
-    }
-}
-
-@media (max-width: 480px) {
-    .dropdown-item .icon {
-        width: 12px;
-        height: 12px;
-        margin-right: 6px;
-        background-color: green; /* Para testar */
-    }
-}
-
 
 .dropdown-item-text strong {
     font-size: 1rem;

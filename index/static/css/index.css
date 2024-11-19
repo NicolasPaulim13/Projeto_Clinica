@@ -323,7 +323,8 @@ button:hover {
     overflow: hidden;
     width: 100%;
     position: relative;
-    max-width: 100%; /* opcional: limite para largura máxima */
+    max-width: 100%; /* Limite para largura máxima opcional */
+    margin: 0 auto; /* Centraliza o carrossel */
 }
 
 /* Pista do carrossel com a animação */
@@ -338,13 +339,16 @@ button:hover {
     box-sizing: border-box;
     transition: transform 0.5s;
     display: block;
-    margin-right: 0
+    margin-right: 0;
+    text-align: center; /* Centraliza o conteúdo */
 }
 
 .carousel-item img {
     width: 100%;
-    height: auto;
+    height: 185px; /* Define uma altura fixa para todas as imagens */
+    object-fit: cover; /* Garante que as imagens preencham o espaço sem distorção */
     display: block;
+    border-radius: 8px; /* Opcional: bordas arredondadas */
 }
 
 /* Animação de rolagem contínua */
@@ -353,7 +357,8 @@ button:hover {
     100% { transform: translateX(-100%); }
 }
 
-.planos h1{
+.convenios h1 {
     justify-content: center;
     align-items: center;
+    text-align: center; /* Centraliza o título horizontalmente */
 }

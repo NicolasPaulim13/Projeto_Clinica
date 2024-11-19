@@ -1,3 +1,4 @@
+/* Estilos Globais */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -5,22 +6,43 @@ body {
     padding: 0;
 }
 
+/* Configurações do Layout */
+.config-section {
+    display: none; /* Esconde todas as seções por padrão */
+}
+
+.config-section.active {
+    display: block; /* Apenas a seção ativa é exibida */
+}
+
+
 .config-wrapper {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap; /* Para melhor comportamento em telas menores */
     padding: 20px;
-    min-height: 100vh;
+    gap: 20px; /* Adiciona espaçamento entre os elementos */
+    box-sizing: border-box;
 }
 
 .config-sidebar {
     width: 250px;
+    flex-shrink: 0;
     background-color: #ffffff;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    margin-right: 20px;
 }
 
+.config-content {
+    flex: 1;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 300px;
+}
+
+/* Sidebar */
 .config-sidebar ul {
     list-style: none;
     padding: 0;
@@ -45,23 +67,7 @@ body {
     background-color: #e9e9e9;
 }
 
-.config-content {
-    width: 100%;
-    max-width: 600px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.config-section {
-    display: none;
-}
-
-.config-section.active {
-    display: block;
-}
-
+/* Formulários */
 .form-section {
     margin-bottom: 15px;
 }
@@ -81,6 +87,7 @@ body {
     border: 1px solid #ddd;
 }
 
+/* Imagem do Perfil */
 .profile-image-preview {
     width: 100px;
     height: 100px;
@@ -88,6 +95,7 @@ body {
     margin-top: 10px;
 }
 
+/* Botões */
 .btn-save {
     background-color: #007bff;
     color: #ffffff;
@@ -101,4 +109,20 @@ body {
 
 .btn-save:hover {
     background-color: #0056b3;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .config-wrapper {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .config-sidebar {
+        width: 100%;
+    }
+
+    .config-content {
+        width: 100%;
+    }
 }

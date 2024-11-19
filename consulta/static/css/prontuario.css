@@ -1,0 +1,87 @@
+/* Container do Prontuário */
+.container-prontuario {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilo para os títulos principais */
+.h1-prontuario {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.h2-prontuario {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Estilo das listas do prontuário */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 20px;
+}
+
+/* Estilo para as etiquetas <strong> */
+strong {
+    display: block; /* Faz com que o texto forte fique acima do campo */
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Estilo dos inputs e selects */
+input[type="text"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    border: 1px solid black;
+}
+
+/* Foco nos campos */
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus {
+    border-color: #78ABC3; /* Cor de borda ao focar no campo */
+    outline: none;
+    border: 1px solid #78ABC3;
+}
+
+.finalizar {
+    display: flex; /* Organiza os elementos em linha */
+    justify-content: space-between; /* Espaço entre o input e o botão */
+    align-items: center; /* Alinha o conteúdo verticalmente no centro */
+    
+}
+
+.btn-finalizar {
+    background-color: green; /* Cor de fundo verde */
+    color: white; /* Cor do texto */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    font-size: 16px; /* Tamanho da fonte */
+    border: none; /* Remove a borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Exibe um cursor de mão ao passar o mouse */
+    width: 25%; /* Largura do botão será 25% */
+    display: block; /* Faz o botão se comportar como um bloco */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    text-align: center; /* Alinha o texto no centro */
+}
+
+
+.btn-finalizar:hover {
+    background-color: darkgreen; /* Cor mais escura quando o mouse passa por cima */
+}

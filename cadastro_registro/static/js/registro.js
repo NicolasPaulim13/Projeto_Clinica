@@ -5,66 +5,56 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const requisitoMinLength = document.querySelector(".requisito-min-length");
   const requisitoNumber = document.querySelector(".requisito-number");
-  const requisitoSpecialChar = document.querySelector(
-    ".requisito-special-char"
-  );
+  const requisitoSpecialChar = document.querySelector(".requisito-special-char");
 
-  // Função para verificar requisitos em tempo real
+  // Validação de requisitos de senha em tempo real
   function verificarRequisitos() {
     const senha = senhaInput.value;
 
-    // Verifica cada requisito e atualiza a cor
-    if (senha.length >= 8) {
-      requisitoMinLength.style.color = "green";
-    } else {
-      requisitoMinLength.style.color = "red";
-    }
+    // Validação de tamanho mínimo
+    requisitoMinLength.style.color = senha.length >= 8 ? "green" : "red";
 
-    if (/\d/.test(senha)) {
-      requisitoNumber.style.color = "green";
-    } else {
-      requisitoNumber.style.color = "red";
-    }
+    // Validação de número
+    requisitoNumber.style.color = /\d/.test(senha) ? "green" : "red";
 
-    if (/[!@#$%^&*(),.?":{}|<>]/.test(senha)) {
-      requisitoSpecialChar.style.color = "green";
-    } else {
-      requisitoSpecialChar.style.color = "red";
-    }
+    // Validação de caractere especial
+    requisitoSpecialChar.style.color = /[!@#$%^&*(),.?":{}|<>]/.test(senha) ? "green" : "red";
   }
 
-  // Mostra os requisitos apenas após a primeira tentativa de envio
+  // Mostra os requisitos após tentativa de envio inválida
   form.addEventListener("submit", function (event) {
     const senha = senhaInput.value;
     let valid = true;
 
-    if (senha.length < 8) {
+    if (senha.length < 8 || !/\d/.test(senha) || !/[!@#$%^&*(),.?":{}|<>]/.test(senha)) {
       valid = false;
     }
 
-    if (!/\d/.test(senha)) {
-      valid = false;
-    }
-
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(senha)) {
-      valid = false;
-    }
-
-    // Se a senha não for válida, mostre os requisitos e impeça o envio
     if (!valid) {
       requisitosContainer.classList.remove("hidden");
       event.preventDefault();
     }
   });
 
-  // Verifica os requisitos em tempo real enquanto o usuário digita
   senhaInput.addEventListener("input", verificarRequisitos);
-});
 
-document.getElementById('cpf_paciente').addEventListener('input', function (event) {
-  let value = event.target.value.replace(/\D/g, ''); // Remove qualquer caractere não numérico
-  if (value.length > 3) value = value.replace(/^(\d{3})(\d)/, '$1.$2');
-  if (value.length > 6) value = value.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
-  if (value.length > 9) value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4');
-  event.target.value = value.substring(0, 14); // Limita o comprimento para 14 caracteres
+  // Máscara e validação de CPF
+  const cpfInput = document.getElementById("cpf_paciente");
+
+  cpfInput.addEventListener("input", function (event) {
+    let value = event.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+    if (value.length > 3) value = value.replace(/^(\d{3})(\d)/, "$1.$2");
+    if (value.length > 6) value = value.replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
+    if (value.length > 9) value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, "$1.$2.$3-$4");
+    event.target.value = value.substring(0, 14); // Limita a 14 caracteres no input
+  });
+
+  // Remover máscara ao sair do campo (opcional, pois o valor é ajustado automaticamente no envio)
+  cpfInput.addEventListener("blur", function () {
+    const value = cpfInput.value.replace(/\D/g, ""); // Retira qualquer formatação
+    if (value.length !== 11) {
+      alert("CPF inválido. Por favor, revise.");
+    }
+  });
+
 });

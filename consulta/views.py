@@ -50,22 +50,25 @@ def listar_consultas(request):
     # Obtém os grupos do usuário autenticado
     grupos_do_usuario = request.user.groups.values_list('name', flat=True)
     user_is_medico = 'medico' in grupos_do_usuario  # Verifica se o usuário é médico
+    user_is_paciente = 'paciente' in grupos_do_usuario  # Verifica se o usuário é paciente
 
     if 'administrador' in grupos_do_usuario:
         consultas = Consulta.objects.all()
     elif user_is_medico:
         consultas = Consulta.objects.filter(medico=request.user)
-    else:
-        # Se o usuário é um paciente, exibe apenas suas consultas
+    elif user_is_paciente:
         try:
             paciente = CadastroRegistro.objects.get(user=request.user)
             consultas = Consulta.objects.filter(paciente=paciente)
         except CadastroRegistro.DoesNotExist:
-            return redirect('index')
+            consultas = []
+    else:
+        consultas = []
 
     return render(request, 'consulta/consulta_list.html', {
         'consultas': consultas,
-        'user_is_medico': user_is_medico
+        'user_is_medico': user_is_medico,
+        'user_is_paciente': user_is_paciente,
     })
 
 
@@ -106,6 +109,11 @@ def deletar_consulta(request, id):
 @login_required
 def relatorio(request):
     return render(request, 'consulta/relatorio.html')
+
+@login_required
+def prontuario(request):
+    return render(request, 'consulta/prontuario.html')
+
 
 
 @login_required

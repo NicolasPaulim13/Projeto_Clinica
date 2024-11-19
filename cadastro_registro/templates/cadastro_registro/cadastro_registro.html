@@ -6,39 +6,60 @@
   <div class="login-container">
     <img src="{% static 'img/registro-online.png' %}" alt="Logo" />
     <h2>Registre-se!</h2>
-    
+
+    <!-- Mensagem de Sucesso -->
+    {% if success_message %}
+      <p style="color: green; font-weight: bold;">{{ success_message }}</p>
+    {% endif %}
+
     <!-- Formulário de Cadastro -->
     <form method="POST" action="{% url 'cadastro_create_paciente' %}" id="registration-form">
       {% csrf_token %}
 
       <!-- Campo de Nome -->
       <div class="nome">
-        <input type="text" name="nome_paciente" placeholder="Nome" required />
+        <input type="text" name="nome_paciente" value="{{ request.POST.nome_paciente|default:'' }}" placeholder="Nome" required />
+        {% if form.nome_paciente.errors %}
+        <p style="color: red;">{{ form.nome_paciente.errors.0 }}</p>
+        {% endif %}
       </div>
 
       <!-- Campo de Email -->
       <div class="Email">
-        <input type="email" name="email_paciente" placeholder="Email" required />
+        <input type="email" name="email_paciente" value="{{ request.POST.email_paciente|default:'' }}" placeholder="Email" required />
+        {% if form.email_paciente.errors %}
+        <p style="color: red;">{{ form.email_paciente.errors.0 }}</p>
+        {% endif %}
       </div>
 
-      <!-- Campo de CPF -->
+      <!-- Campo de CPF com Máscara -->
       <div class="cpf">
-        <input type="text" name="cpf_paciente" class="form-control" id="cpf_paciente" placeholder="000.000.000-00" required />
-    </div>
-    
+        <input type="text" name="cpf_paciente" id="cpf_paciente" maxlength="14"
+          value="{{ request.POST.cpf_paciente|default:'' }}" placeholder="000.000.000-00" required />
+        {% if form.cpf_paciente.errors %}
+        <p style="color: red;">{{ form.cpf_paciente.errors.0 }}</p>
+        {% endif %}
+      </div>
+
       <!-- Campo de Data de Nascimento -->
       <div class="nacimento">
-        <input type="date" name="data_nascimento_paciente" placeholder="Data de nascimento" required />
+        <input type="date" name="data_nascimento_paciente" value="{{ request.POST.data_nascimento_paciente|default:'' }}" required />
+        {% if form.data_nascimento_paciente.errors %}
+        <p style="color: red;">{{ form.data_nascimento_paciente.errors.0 }}</p>
+        {% endif %}
       </div>
 
       <!-- Campo de Sexo -->
       <div class="escolhadosexo">
         <select name="sexo_paciente" id="gender" required>
-          <option value="" disabled selected>Sexo</option>
-          <option value="M">Masculino</option>
-          <option value="F">Feminino</option>
-          <option value="O">Outro</option>
+          <option value="" disabled {% if not request.POST.sexo_paciente %}selected{% endif %}>Sexo</option>
+          <option value="M" {% if request.POST.sexo_paciente == 'M' %}selected{% endif %}>Masculino</option>
+          <option value="F" {% if request.POST.sexo_paciente == 'F' %}selected{% endif %}>Feminino</option>
+          <option value="O" {% if request.POST.sexo_paciente == 'O' %}selected{% endif %}>Outro</option>
         </select>
+        {% if form.sexo_paciente.errors %}
+        <p style="color: red;">{{ form.sexo_paciente.errors.0 }}</p>
+        {% endif %}
       </div>
 
       <!-- Campo de Senha -->
@@ -61,7 +82,20 @@
         <div class="confirma_senha">
           <input type="password" name="confirma_senha_paciente" placeholder="Confirme sua Senha" required />
         </div>
+
+        {% if form.senha_paciente.errors %}
+        <p style="color: red;">{{ form.senha_paciente.errors.0 }}</p>
+        {% endif %}
       </div>
+
+      <!-- Exibição de Erros do Formulário -->
+      {% if form.errors %}
+        <ul style="color: red;">
+          {% for field, errors in form.errors.items %}
+            <li><strong>{{ field }}</strong>: {{ errors|join:", " }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
 
       <!-- Botão de Cadastro -->
       <button type="submit">Cadastrar-se</button>
@@ -69,14 +103,22 @@
 
     <!-- Caso haja mensagens de erro ou sucesso -->
     {% if messages %}
-      {% for message in messages %}
-        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
-          {{ message }}
-        </div>
-      {% endfor %}
+    {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+      {{ message }}
+    </div>
+    {% endfor %}
     {% endif %}
   </div>
 </div>
 
+<!-- Adicionando Script para Máscara de CPF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mask-plugin/1.14.16/jquery.mask.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#cpf_paciente').mask('000.000.000-00'); // Máscara para CPF
+  });
+</script>
 <script src="{% static 'js/registro.js' %}"></script>
 {% endblock %}
