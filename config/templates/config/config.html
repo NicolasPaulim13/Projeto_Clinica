@@ -22,17 +22,18 @@
         <!-- Seção Editar Perfil -->
         <div id="editarPerfil" class="config-section active">
             <h1>Editar Perfil</h1>
-            <form method="POST" enctype="multipart/form-data" id="perfilForm">
+            <form method="POST" enctype="multipart/form-data" action="{% url 'config' %}">
                 {% csrf_token %}
+                <input type="hidden" name="form_type" value="editar_perfil"> <!-- Identificador do formulário -->
                 <div class="form-section">
                     <label for="nome_paciente">Nome:</label>
-                    {{ form.nome_paciente }}
+                    <input type="text" name="nome_paciente" value="{{ cadastro.nome_paciente }}" required>
                 </div>
                 <div class="form-section">
-                    <label for="imagem_perfil">Modificar Imagem:</label>
-                    {{ form.imagem_perfil }}
-                    {% if form.instance.imagem_perfil %}
-                        <img src="{{ form.instance.imagem_perfil.url }}" alt="Imagem Atual" class="profile-image-preview">
+                    <label for="imagem_perfil">Imagem de Perfil:</label>
+                    <input type="file" name="imagem_perfil">
+                    {% if perfil.imagem_perfil %}
+                        <img src="{{ perfil.imagem_perfil.url }}" alt="Imagem de Perfil" style="max-width: 150px;">
                     {% endif %}
                 </div>
                 <button type="submit" class="btn-save">Salvar Alterações</button>
@@ -42,8 +43,9 @@
         <!-- Seção Informações Pessoais -->
         <div id="informacoesPessoais" class="config-section">
             <h1>Informações Pessoais</h1>
-            <form method="POST" enctype="multipart/form-data">
+            <form method="POST" action="{% url 'config' %}">
                 {% csrf_token %}
+                <input type="hidden" name="form_type" value="editar_informacoes"> <!-- Identificador do formulário -->
                 <div class="form-section">
                     <label for="email_paciente">Email:</label>
                     <input type="email" name="email_paciente" value="{{ cadastro.email_paciente }}" required>
@@ -62,8 +64,13 @@
                 </div>
                 <div class="form-section">
                     <label for="data_nascimento_paciente">Data de Nascimento:</label>
-                    <input type="date" name="data_nascimento_paciente" value="{{ cadastro.data_nascimento_paciente }}" required>
+                    <input 
+                        type="date" 
+                        name="data_nascimento_paciente" 
+                        value="{{ cadastro.data_nascimento_paciente|date:'Y-m-d' }}" 
+                        required>
                 </div>
+                
                 <button type="submit" class="btn-save">Salvar Alterações</button>
             </form>
         </div>

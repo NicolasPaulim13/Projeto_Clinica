@@ -1,5 +1,6 @@
 {% extends 'registration/base.html' %}
 {% block content %}
+{% load static %}
 
 <div class="titulo_consulta">
     <h1>Editar Consulta</h1>
@@ -12,16 +13,105 @@
     <div class="card p-4 shadow-lg form-container">
         <form method="POST" action="{% url 'consulta_edit' consulta.id %}">
             {% csrf_token %}
+
             <div class="col-12">
                 <label for="nome" class="form-label">Nome:</label>
-                <input type="text" name="nome" class="form-control" id="nome" value="{{ user.cadastroregistro.nome_paciente }}" readonly />
+                <input
+                    type="text"
+                    name="nome"
+                    class="form-control"
+                    id="nome"
+                    value="{{ consulta.nome }}"
+                    readonly
+                />
             </div>
+            
             <div class="col-12">
                 <label for="email" class="form-label">E-mail:</label>
-                <input type="email" name="email" class="form-control" id="email" value="{{ user.cadastroregistro.email_paciente }}" readonly />
+                <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    id="email"
+                    value="{{ consulta.email }}"
+                    readonly
+                />
             </div>
-            <!-- Campos de edição -->
-            {{ form.as_p }}
+
+            <!-- Campo Telefone -->
+            <div class="col-12">
+                <label for="telefone" class="form-label">Telefone:</label>
+                <input 
+                    type="tel" 
+                    name="telefone" 
+                    class="form-control" 
+                    id="telefone" 
+                    value="{{ consulta.telefone }}" 
+                    placeholder="Ex: (XX) XXXXX-XXXX" 
+                    required
+                />
+            </div>
+
+            <!-- Campo Médico -->
+            <div class="col-12">
+                <label for="medico" class="form-label">Selecione um médico:</label>
+                <select name="medico" id="medico" class="form-control" required>
+                    {% for medico in form.fields.medico.queryset %}
+                    <option value="{{ medico.id }}" {% if medico == consulta.medico %}selected{% endif %}>
+                        {{ medico.first_name }} {{ medico.last_name }} ({{ medico.email }})
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Campo Assunto -->
+            <div class="col-12">
+                <label for="assunto" class="form-label">Assunto:</label>
+                <select name="assunto" id="assunto" class="form-control" required>
+                    {% for key, value in form.fields.assunto.choices %}
+                    <option value="{{ key }}" {% if key == consulta.assunto %}selected{% endif %}>
+                        {{ value }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Campo Data da Consulta -->
+            <div class="col-12">
+                <label for="data_consulta" class="form-label">Data da Consulta:</label>
+                <input 
+                    type="date" 
+                    name="data_consulta" 
+                    class="form-control" 
+                    id="data_consulta" 
+                    value="{{ consulta.data_consulta|date:'Y-m-d' }}" 
+                    required
+                />
+            </div>
+            
+            <!-- Campo Hora da Consulta -->
+            <div class="col-12">
+                <label for="hora_consulta" class="form-label">Hora da Consulta:</label>
+                <select name="hora_consulta" id="hora_consulta" class="form-control" required>
+                    {% for hora in horas_disponiveis %}
+                    <option value="{{ hora }}" {% if hora == consulta.hora_consulta|time:'H:i' %}selected{% endif %}>
+                        {{ hora }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Campo Observações -->
+            <div class="col-12">
+                <label for="observacoes" class="form-label">Observações:</label>
+                <textarea 
+                    name="observacoes" 
+                    class="form-control" 
+                    id="observacoes" 
+                    rows="3"
+                >{{ consulta.observacoes }}</textarea>
+            </div>
+
             <div class="col-12 d-grid">
                 <button type="submit" class="btn btn-primary">Salvar</button>
                 <a href="{% url 'consulta_list' %}" class="btn btn-secondary">Cancelar</a>
@@ -29,9 +119,5 @@
         </form>
     </div>
 </div>
-{% load static %}
-
-<!-- Link para o script JavaScript -->
-<script src="{% static 'js/consulta_edit.js' %}"></script>
 
 {% endblock %}

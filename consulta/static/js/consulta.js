@@ -107,3 +107,5 @@ window.onload = function() {
     atualizarDataFormatada(); // Chama para formatar a data ao carregar a página
     limitarNumero(); // Limita o número a 11 caracteres
 };
+
+

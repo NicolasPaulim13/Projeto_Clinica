@@ -35,14 +35,14 @@
 
 
 
-  
-  
+
+
 
 /* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
     background-color: white;
-    
+
 }
 
 .container {
@@ -82,25 +82,27 @@ header.container-nav {
 }
 
 .nav-item a {
-   
+
     font-family: "Poppins Regular";
     color: rgb(46, 45, 45);
     text-decoration: none;
     padding: 8px 4px;
     font-size: 90%;
     font-weight: 500;
-    background-color: #78ABC3; /* Fundo azul apenas nos itens de navegação */
-    border-radius: 5px; /* Bordas arredondadas para cada item */
+    background-color: #78ABC3;
+    /* Fundo azul apenas nos itens de navegação */
+    border-radius: 5px;
+    /* Bordas arredondadas para cada item */
 }
 
 .nav-item a:hover {
     color: rgb(0, 0, 0);
-    
+
     font-size: 99%;
 }
 
 .btn-outline-primary {
-   
+
     background-color: #0EC8DD;
     border-radius: 50vh;
     width: 20%;
@@ -113,7 +115,7 @@ header.container-nav {
 
 .container-nav button:hover {
     border-color: transparent;
-    
+
 }
 
 /* Estilo do botão do menu hambúrguer */
@@ -127,10 +129,14 @@ header.container-nav {
     position: relative;
     left: 40%;
     top: -10vh;
-    width:  10px;
+    width: 10px;
     height: 50px;
+   
 }
 
+.opcao-responsiva {
+    display: none;
+  }
 
 @media (max-width: 768px) {
     .container-nav {
@@ -155,43 +161,61 @@ header.container-nav {
     }
 
     .nav {
-        background-color: #78ABC3; /* Adiciona cor de fundo ao menu */
+        background-color: #78ABC3;
+        /* Adiciona cor de fundo ao menu */
         display: none;
         flex-direction: column;
-        align-items: flex-end; /* Alinha os itens ao lado direito */
+        align-items: flex-end;
+        /* Alinha os itens ao lado direito */
         position: absolute;
         top: 100%;
-        right: 0; /* Move o menu para a direita */
-        padding: 0; /* Remove o espaçamento interno */
+        right: 0;
+        /* Move o menu para a direita */
+        padding: 0;
+        /* Remove o espaçamento interno */
         z-index: 150;
         top: 45%;
         border-radius: 2vh;
-        
+
     }
 
     .nav-item:last-child {
-        border-bottom: none; /* Remove a borda do último item */
+        border-bottom: none;
+        /* Remove a borda do último item */
     }
 
     .nav-item a {
-        padding: 10px 20px; /* Ajusta o preenchimento dos links */
-        display: block; /* Faz com que os links ocupem a largura total do item */
-        background-color: #78ABC3; /* Fundo dos itens de navegação */
+        padding: 10px 20px;
+        /* Ajusta o preenchimento dos links */
+        display: block;
+        /* Faz com que os links ocupem a largura total do item */
+        background-color: #78ABC3;
+        /* Fundo dos itens de navegação */
         color: white;
     }
 
     .hamburger-menu {
         display: block;
+        z-index: 30;
     }
-    
+
 
     .nav.active {
         display: flex;
+        top: 125px;
     }
 
     .container-nav button {
         width: 20%;
         margin-top: 10px;
+    }
+
+    .opcao-responsiva {
+        display: block;
+    }
+
+    .dropdown-responsivo {
+        display: none;
     }
 }
 
@@ -283,20 +307,20 @@ nav a:hover {
     height: 70%;
     width: 90%;
     border-radius: 5vh;
-  margin-top: 0px;
+    margin-top: 0px;
 }
 
 @media (max-width: 768px) {
     .midicao img {
-       margin-top: -30px;
+        margin-top: -30px;
     }
 }
 
 @media (max-width: 768px) {
-      .faq-container h1{
-    position: relative;
-    margin-left: -65px;
-}
+    .faq-container h1 {
+        position: relative;
+        margin-left: -65px;
+    }
 }
 
 .faq-grid-container {
@@ -312,7 +336,8 @@ nav a:hover {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
 }
-.faq-container h1{
+
+.faq-container h1 {
     position: relative;
     left: 35%;
 }
@@ -356,27 +381,83 @@ footer {
 
 .container-footer {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Cria 4 colunas de tamanhos iguais */
-    gap: 2rem; /* Espaçamento consistente entre os elementos */
+    grid-template-columns: repeat(4, 1fr);
+    /* Cria 4 colunas de tamanhos iguais */
+    gap: 2rem;
+    /* Espaçamento consistente entre os elementos */
     text-align: center;
-    justify-items: center; /* Centraliza os itens em cada coluna */
+    justify-items: center;
+    /* Centraliza os itens em cada coluna */
 }
 
 @media (max-width: 768px) {
     .container-footer {
-        grid-template-columns: repeat(2, 1fr); /* Reduz para 2 colunas em telas menores */
+        grid-template-columns: repeat(2, 1fr);
+        /* Reduz para 2 colunas em telas menores */
     }
 }
 
 @media (max-width: 480px) {
     .container-footer {
-        grid-template-columns: 1fr; /* Seções empilhadas em telas pequenas */
+        grid-template-columns: 1fr;
+        /* Seções empilhadas em telas pequenas */
     }
+}
+/* Estilo geral do accordion */
+.accordion {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Estilo de cada item */
+.accordion-item {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo do botão */
+.accordion-button {
+    width: 100%;
+    background-color: #f1f1f1;
+    border: none;
+    text-align: left;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Efeito ao passar o mouse no botão */
+.accordion-button:hover {
+    background-color: #78ABC3;
+}
+
+/* Estilo do conteúdo (escondido inicialmente) */
+.accordion-content {
+    max-height: 0; /* Escondido inicialmente */
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 20px; /* Padding 0 para conteúdo escondido */
+    background-color: #fff;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Estilo do conteúdo visível */
+.accordion-content.active {
+    max-height: 200px; /* Altura máxima ajustável conforme o conteúdo */
+    padding: 15px 20px; /* Adiciona padding ao exibir o conteúdo */
 }
 
 
 .nome-footer {
-    flex: 1 1 100%; /* Largura responsiva */
+    flex: 1 1 100%;
+    /* Largura responsiva */
     margin-bottom: 1rem;
     text-align: center;
 }
@@ -389,8 +470,10 @@ footer {
 
 .redes-sociais {
     display: flex;
-    justify-content: center; /* Alinhamento centralizado */
-    gap: 1rem; /* Espaçamento entre ícones */
+    justify-content: center;
+    /* Alinhamento centralizado */
+    gap: 1rem;
+    /* Espaçamento entre ícones */
     margin-top: 1rem;
 }
 
@@ -406,19 +489,27 @@ footer {
     transform: scale(1.3);
 }
 
-.services, .about, .store {
-    flex: 1 1 300px; /* Largura responsiva para cada bloco */
-    margin: 0; /* Remove margens fixas */
+.services,
+.about,
+.store {
+    flex: 1 1 300px;
+    /* Largura responsiva para cada bloco */
+    margin: 0;
+    /* Remove margens fixas */
 }
 
-.services h1, .about h1, .store h1 {
+.services h1,
+.about h1,
+.store h1 {
     font-family: "Montserrat", sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
 }
 
-.services a, .about a, .store a {
+.services a,
+.about a,
+.store a {
     font-family: "Inter", sans-serif;
     color: black;
     text-decoration: none;
@@ -426,13 +517,16 @@ footer {
     transition: color 0.3s ease;
 }
 
-.services a:hover, .about a:hover {
+.services a:hover,
+.about a:hover {
     color: #3a5bcccc;
 }
 
 .store img {
-    width: 100%; /* Ajuste automático da largura */
-    max-width: 150px; /* Tamanho máximo para evitar imagens grandes */
+    width: 100%;
+    /* Ajuste automático da largura */
+    max-width: 150px;
+    /* Tamanho máximo para evitar imagens grandes */
     margin-top: 1rem;
 }
 
@@ -458,17 +552,21 @@ footer {
     }
 
     .store img {
-        max-width: 100px; /* Reduz tamanho em telas menores */
+        max-width: 100px;
+        /* Reduz tamanho em telas menores */
     }
 }
 
 @media (max-width: 480px) {
     .redes-sociais {
         justify-content: center;
-        gap: 0.5rem; /* Reduz espaço entre ícones */
+        gap: 0.5rem;
+        /* Reduz espaço entre ícones */
     }
 
-    .services h1, .about h1, .store h1 {
+    .services h1,
+    .about h1,
+    .store h1 {
         font-size: 1rem;
     }
 
@@ -510,11 +608,11 @@ footer {
     display: none;
 }
 
-.dropdown-item{
+.dropdown-item {
     cursor: pointer;
 }
 
-#opcoes{
+#opcoes {
     background-color: white;
 }
 
@@ -536,8 +634,14 @@ footer {
     color: #333;
 }
 
+.hamburger-menu button:hover{
+    background-color: transparent;
+
+}
+
 /* Estilos responsivos específicos para o dropdown do perfil em telas menores */
 @media (max-width: 576px) {
+
     /* Reduz o tamanho da imagem de perfil */
     .perfil-imagem {
         width: 24px;
@@ -549,7 +653,8 @@ footer {
     .dropdown-menu {
         min-width: auto;
         padding: 0.3rem;
-        right: 10px; /* Ajuste opcional para evitar o corte em bordas */
+        right: 10px;
+        /* Ajuste opcional para evitar o corte em bordas */
     }
 
     .dropdown-item .icon {
@@ -562,4 +667,8 @@ footer {
     .dropdown-item-text strong {
         font-size: 1rem;
     }
+}
+
+.container-nav{
+    z-index: 1;
 }

@@ -3,9 +3,8 @@ from cadastro_registro.models import CadastroRegistro
 def paciente_context(request):
     if request.user.is_authenticated:
         try:
-            # Busca pelo modelo `CadastroRegistro` associado ao usuário autenticado
             cadastro = CadastroRegistro.objects.get(user=request.user)
-            nome = cadastro.nome_paciente.split()[0]  # Primeiro nome do paciente
+            nome = cadastro.nome_paciente  # Nome completo
             imagem_perfil = cadastro.imagem_perfil.url if cadastro.imagem_perfil else None
         except CadastroRegistro.DoesNotExist:
             nome = None

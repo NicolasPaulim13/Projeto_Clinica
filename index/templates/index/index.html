@@ -3,138 +3,491 @@
 
 {% block content %}
 
-<head>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet" />
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        color: #333333;
+    }
 
+    /* Estilo para o cabeçalho com imagem de fundo */
+    .cabecalhoindex {
+        background-image: url('https://storage.googleapis.com/a1aa/image/Vc6krheGGwVlVyFBNbqSfwYMFeL1ayhZLGejRGyKqm0A0XSPB.jpg');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: left;
+        padding: 100px 20px;
+        position: relative;
+        z-index: -10;
+    }
 
-    <script>
-        // Obtém o botão e o toast
-        var toastTrigger = document.getElementById('liveToastBtn');
-        var toastLiveExample = document.getElementById('liveToast');
+    /* Escurece a imagem de fundo */
+    .cabecalhoindex::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
 
-        // Verifica se o botão existe na página
-        if (toastTrigger) {
-            toastTrigger.addEventListener('click', function () {
-                var toast = new bootstrap.Toast(toastLiveExample);
-                toast.show();
-            });
+    /* Estilo para o conteúdo do cabeçalho */
+    .cabecalhoindex h1,
+    .cabecalhoindex p,
+    .cabecalhoindex button {
+        position: relative;
+        z-index: 2;
+    }
+
+    .cabecalhoindex h1 {
+        font-size: 48px;
+        margin: 0;
+        font-weight: 700;
+    }
+
+    .cabecalhoindex p {
+        font-size: 20px;
+        margin: 10px 0;
+    }
+
+    .cabecalhoindex button {
+        background-color: #ffffff;
+        color: #000000;
+        border: none;
+        padding: 15px 30px;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 25px;
+        margin-top: 20px;
+        text-align: left;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .cabecalhoindex button:hover {
+        background-color: #000000;
+        color: #ffffff;
+    }
+
+    /* Estilo para o conteúdo principal */
+    .conteudo {
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .conteudo h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+
+    .conteudo p {
+        font-size: 18px;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+
+    /* Estilo para a seção de imagem e texto */
+    .imagem-texto {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+    }
+
+    .imagem-texto img {
+        width: 250px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .texto {
+        max-width: 600px;
+        text-align: left;
+    }
+
+    /* Estilo para os cartões */
+    .cartoes {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+    }
+
+    .cartao1,
+    .cartao2 {
+        background-color: #f8f8f8;
+        padding: 20px;
+        border-radius: 8px;
+        width: 300px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .cartao1:hover,
+    .cartao2:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .cartao1 h3,
+    .cartao2 h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .cartao1 p,
+    .cartao2 p {
+        font-size: 16px;
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+
+    /* Estilo para a seção de planos */
+    .planos {
+        text-align: center;
+        padding: 60px 20px;
+        background-color: #f0f0f0;
+    }
+
+    .planos h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+
+    .cartoes-planos {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .cartao-plano {
+        background-color: #ffffff;
+        color: #000000;
+        padding: 20px;
+        border-radius: 8px;
+        width: 220px;
+        text-align: center;
+        margin-bottom: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .cartao-plano:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .cartao-plano h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .cartao-plano p {
+        font-size: 24px;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .cartao-plano span {
+        font-size: 16px;
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .cartao-plano button {
+        background-color: #000000;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 25px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .cartao-plano button:hover {
+        background-color: #ffffff;
+        color: #000000;
+    }
+
+    /* Estilo para o carrossel de imagens */
+    .carrossel {
+        position: relative;
+        max-width: 80%;
+        height: 300px;
+        margin: 40px auto;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .imagens-carrossel {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .imagens-carrossel img {
+        min-width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .botoes-carrossel {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+    }
+
+    .botoes-carrossel button {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .botoes-carrossel button:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Estilo responsivo */
+    @media (max-width: 768px) {
+        .cabecalhoindex {
+            padding: 50px 20px;
         }
+
+        .cabecalhoindex h1 {
+            font-size: 28px;
+        }
+
+        .cabecalhoindex p {
+            font-size: 16px;
+        }
+
+        .cabecalhoindex button {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+
+        .conteudo h2 {
+            font-size: 20px;
+        }
+
+        .conteudo p {
+            font-size: 14px;
+        }
+
+        .imagem-texto {
+            text-align: center;
+        }
+
+        .texto {
+            text-align: center;
+        }
+
+        .cartao1,
+        .cartao2 {
+            width: 100%;
+        }
+
+        .cartao-plano {
+            width: 100%;
+        }
+
+        .carrossel {
+            height: 200px;
+        }
+
+        .imagens-carrossel img {
+            height: 200px;
+        }
+    }
+</style>
+</head>
+
+<body>
+    <!-- Cabeçalho com imagem de fundo -->
+    <div class="cabecalhoindex">
+        <h1>
+            Odontologia Sorriso das Graças
+        </h1>
+        <p>
+            Cuidando do Seu Sorriso com Dedicação e Excelência. Nossa equipe de profissionais qualificados oferece
+            tratamentos de alta qualidade para garantir um sorriso saudável e um sorriso radiante.
+        </p>
+        <button>
+            Saiba Mais
+        </button>
+    </div>
+    <!-- Conteúdo principal -->
+    <div class="conteudo">
+        <div class="imagem-texto">
+            <!-- Imagem da criança sorrindo -->
+            <img alt="Imagem de uma criança sorrindo"
+                src="https://storage.googleapis.com/a1aa/image/WYo001SgFMbNE9q6RxTXSBdHqJJZFmQdefQXd9Ev14qt7l0TA.jpg" />
+            <!-- Texto ao lado da imagem -->
+            <div class="texto">
+                <h2>
+                    Por que você deve escolher nosso serviço odontológico?
+                </h2>
+                <p>
+                    Descubra por que nosso serviço odontológico se destaca dos demais. Da nossa equipe experiente ao
+                    nosso equipamento de última geração, oferecemos atendimento excepcional para todas as suas
+                    necessidades odontológicas.
+                </p>
+            </div>
+        </div>
+        <!-- Cartões de informações -->
+        <div class="cartoes">
+            <div class="cartao1">
+                <h3>
+                    Equipe Especializada e Qualificada
+                </h3>
+                <p>
+                    Nossa equipe é formada por profissionais super experientes que entendem sobre todos os aspectos da
+                    saúde bucal. Estamos aqui para cuidar de você, nossa paixão é oferecer atendimento de alta
+                    qualidade.
+                </p>
+            </div>
+            <div class="cartao2">
+                <h3>
+                    Equipe Especializada e Qualificada
+                </h3>
+                <p>
+                    Do atendimento na recepção ao ponto, seus problemas serão resolvidos rápido e com precisão. Nossa
+                    missão é fazer com que o seu tratamento seja o mais eficiente e confortável para você.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Seção de planos -->
+    <div class="planos">
+        <h2>
+            Planos
+        </h2>
+        <div class="cartoes-planos">
+            <div class="cartao-plano">
+                <h3>
+                    Plano Individual
+                </h3>
+                <p>
+                    $ 39,99
+                </p>
+                <span>
+                    /mês
+                </span>
+                <button>
+                    Saiba mais
+                </button>
+            </div>
+            <div class="cartao-plano">
+                <h3>
+                    Plano Família
+                </h3>
+                <p>
+                    $ 249,99
+                </p>
+                <span>
+                    /mês
+                </span>
+                <button>
+                    Saiba mais
+                </button>
+            </div>
+            <div class="cartao-plano">
+                <h3>
+                    Plano Premium
+                </h3>
+                <p>
+                    $ 99,99
+                </p>
+                <span>
+                    /mês
+                </span>
+                <button>
+                    Saiba mais
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Carrossel de imagens -->
+    <div class="carrossel">
+        <div class="imagens-carrossel">
+            <img alt="Imagem de um consultório odontológico" height="300"
+                src="{% static 'img/img_home1.jpg' %}"
+                width="400" />
+            <img alt="Imagem de um dentista atendendo um paciente" height="300"
+                src="{% static 'img/img_home2.jpg' %}"
+                width="400" />
+            <img alt="Imagem de equipamentos odontológicos" height="300"
+                src="{% static 'img/img_home3.jpg' %}"
+                width="400" />
+            <img alt="Imagem de uma cadeira odontológica" height="300"
+                src="{% static 'img/img_home4.jpg' %}"
+                width="400" />
+        </div>
+        <div class="botoes-carrossel">
+            <button id="anterior">
+                ❮
+            </button>
+            <button id="proximo">
+                ❯
+            </button>
+        </div>
+    </div>
+    <script>
+        const imagensCarrossel = document.querySelector('.imagens-carrossel');
+        const imagens = document.querySelectorAll('.imagens-carrossel img');
+        const botaoAnterior = document.getElementById('anterior');
+        const botaoProximo = document.getElementById('proximo');
+        let indice = 0;
+
+        function mostrarImagem(indice) {
+            const deslocamento = -indice * 100;
+            imagensCarrossel.style.transform = `translateX(${deslocamento}%)`;
+        }
+
+        botaoAnterior.addEventListener('click', () => {
+            indice = (indice > 0) ? indice - 1 : imagens.length - 1;
+            mostrarImagem(indice);
+        });
+
+        botaoProximo.addEventListener('click', () => {
+            indice = (indice < imagens.length - 1) ? indice + 1 : 0;
+            mostrarImagem(indice);
+        });
+
+        setInterval(() => {
+            indice = (indice < imagens.length - 1) ? indice + 1 : 0;
+            mostrarImagem(indice);
+        }, 3000);
     </script>
+</body>
 
-    </div>
-    </div>
-    </div>
-    </header>
-    <section class="parte1">
-        <div class="conteudo-home">
-            <img class="img-principal" src="{% static  'img/home-principal.jpg' %}" alt="">
-            <h1 class="titulo-home">Odontologia Sorriso das Graças</h1>
-            <h2>Cuidando do Seu Sorriso com Dedicação e Excelência. Nossa equipe de profissionais qualificados
-                oferece
-                tratamentos de alta qualidade para garantir sua saúde bucal e um sorriso radiante.</h2>
-            <button type="button" class="btn btn-outline-primary">Saiba Mais</button>
-        </div>
-    </section>
-
-
-    <section class="parte2">
-        <div class="imagekid">
-            <img src="{% static  'img/crianca.jpg' %}" alt="">
-        </div>
-        <div class="textkid">
-            <h2>Por que você deve escolher nosso serviço odontológico?</h2>
-            <p>Descubra por que nosso serviço odontológico se destaca dos demais. Da nossa equipe experiente ao nosso
-                equipamento de última geração, oferecemos atendimento excepcional para todas as suas necessidades
-                odontológicas.</p>
-        </div>
-    </section>
-
-    <section class="parte3">
-
-        <div class="card_vantagens">
-            <div class="card">
-                <h3>Equipe Especializada e Qualificada</h3>
-                <p>Nossa equipe é formada por profissionais super experientes que entendem tudo sobre o que fazem. Eles
-                    estão sempre aprendendo coisas novas para te oferecer o melhor atendimento.</p>
-            </div>
-            <div class="card">
-                <h3>Equipe Especializada e Qualificada</h3>
-                <p>Com a nossa tecnologia de ponta, seus problemas são resolvidos mais rápido e com mais precisão. Nossa
-                    infraestrutura moderna garante um atendimento mais eficiente e confortável para você.</p>
-            </div>
-        </div>
-
-
-    </section>
-
-    <section class="parte4">
-        <div class="titulo">
-            <h2>Planos</h2>
-        </div>
-
-
-        <article class="plano">
-            <div class="plano-header">Plano Individual</div>
-            <div class="plano-body">
-                <p class="preco">$ 39,99</p>
-                <p>/mês</p>
-                <button>Saiba mais</button>
-            </div>
-        </article>
-
-        <article class="plano">
-            <div class="plano-header">Plano Família</div>
-            <div class="plano-body">
-                <p class="preco">$ 249,99</p>
-                <p>/mês</p>
-                <button>Saiba mais</button>
-            </div>
-        </article>
-
-        <article class="plano">
-            <div class="plano-header">Plano Premium</div>
-            <div class="plano-body">
-                <p class="preco">$ 99,99</p>
-                <p>/mês</p>
-                <button>Saiba mais</button>
-            </div>
-        </article>
+</html>
 
 
 
-    </section>
 
 
-    <div class="convenios">
-        <h1>Confira os Convênios Aceitos na Clínica</h1>
-        <br>
-        <br>
-        <div class="carousel-container">
-            <div class="carousel-track">
-                <!-- Imagens do carrossel -->
-                <div class="carousel-item">
-                    <img src="{% static  'img/img_home1.jpg' %}" alt="Imagem 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="{% static  'img/img_home2.jpg' %}" alt="Imagem 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="{% static  '/img/img_home3.jpg' %}" alt="Imagem 3">
-                </div>
-                <div class="carousel-item">
-                    <img src="{% static  'img/img_home4.jpg' %}" alt="Imagem 4">
-                </div>
-                <div class="carousel-item">
-                    <img src="{% static  'img/img_home5.jpg' %}" alt="Imagem 5">
-                </div>
-                <!-- Duplicar as imagens para um efeito de loop contínuo -->
-                <div class="carousel-item"><img src="{% static  'img/img_home1.jpg' %}" alt="Imagem 1"></div>
-                <div class="carousel-item"><img src="{% static  'img/img_home2.jpg' %}" alt="Imagem 2"></div>
-                <div class="carousel-item"><img src="{% static  'img/img_home3.jpg' %}" alt="Imagem 3"></div>
-                <div class="carousel-item"><img src="{% static  'img/img_home4.jpg' %}" alt="Imagem 4"></div>
-                <div class="carousel-item"><img src="{% static  'img/img_home5.jpg' %}" alt="Imagem 5"></div>
-            </div>
-        </div>
-    </div>
-
-
-    {% endblock %}
+{% endblock %}

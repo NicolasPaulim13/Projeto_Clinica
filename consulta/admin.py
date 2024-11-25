@@ -10,18 +10,6 @@ class ConsultaAdmin(admin.ModelAdmin):
     list_per_page = 20
     actions = ['marcar_exame_realizado']
 
-    fieldsets = (
-        ('Informações do Paciente', {
-            'fields': ('nome', 'email', 'telefone')
-        }),
-        ('Detalhes da Consulta', {
-            'fields': ('assunto', 'data_consulta', 'hora_consulta', 'observacoes', 'exame_realizado')
-        }),
-        ('Médico Responsável', {
-            'fields': ('medico',)
-        }),
-    )
-
     def marcar_exame_realizado(self, request, queryset):
         queryset.update(exame_realizado=True)
         self.message_user(request, "Consultas marcadas como realizadas com sucesso.")

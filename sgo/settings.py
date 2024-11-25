@@ -141,13 +141,6 @@ STATIC_URL = 'static/'
 # Caminho onde os arquivos estáticos serão coletados
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # Diretório para coletar os arquivos estáticos
 
-# Configurações de autenticação e redirecionamento.
-
-
-
-# Configurações de autenticação e redirecionamento.
-
-# Configurações de autenticação e redirecionamento.
 
 
 # settings.py

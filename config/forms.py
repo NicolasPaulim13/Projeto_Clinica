@@ -1,48 +1,51 @@
 from django import forms
-from .models import Perfil
 from cadastro_registro.models import CadastroRegistro
-from django.contrib.auth.hashers import make_password
-from django.core.exceptions import ValidationError
+from .models import Perfil
 
 class PerfilForm(forms.ModelForm):
-    nome_paciente = forms.CharField(max_length=100, required=True, label="Nome")
-    email_paciente = forms.EmailField(required=True, label="Email")
-    cpf_paciente = forms.CharField(max_length=14, required=True, label="CPF")
+    # Campos vinculados ao CadastroRegistro
+    nome_paciente = forms.CharField(
+        max_length=100,
+        label="Nome Completo",
+        required=True,
+        widget=forms.TextInput(attrs={'placeholder': 'Digite seu nome completo'})
+    )
+    email_paciente = forms.EmailField(
+        label="Email",
+        required=True,
+        widget=forms.EmailInput(attrs={'placeholder': 'exemplo@email.com'})
+    )
+    cpf_paciente = forms.CharField(
+        max_length=14,
+        label="CPF",
+        required=True,
+        widget=forms.TextInput(attrs={'placeholder': '000.000.000-00'})
+    )
     data_nascimento_paciente = forms.DateField(
-        required=True, label="Data de Nascimento",
+        label="Data de Nascimento",
+        required=True,
         widget=forms.DateInput(attrs={'type': 'date'})
     )
 
     class Meta:
         model = Perfil
-        fields = ['imagem_perfil']
+        fields = ['imagem_perfil']  # Campo relacionado ao Perfil
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        if self.instance and self.instance.cadastro_registro:
-            cadastro = self.instance.cadastro_registro
-            self.fields['nome_paciente'].initial = cadastro.nome_paciente
-            self.fields['email_paciente'].initial = cadastro.email_paciente
-            self.fields['cpf_paciente'].initial = cadastro.cpf_paciente
-            self.fields['data_nascimento_paciente'].initial = cadastro.data_nascimento_paciente
-
-    def save(self, commit=True):
+    def save(self, commit=True, cadastro=None):
+        """
+        Sobrescreve o método save para atualizar também os campos do CadastroRegistro.
+        """
         perfil = super().save(commit=False)
 
-        # Atualizar os campos do CadastroRegistro
-        try:
-            cadastro = perfil.cadastro_registro
-            if cadastro:
-                cadastro.nome_paciente = self.cleaned_data['nome_paciente']
-                cadastro.email_paciente = self.cleaned_data['email_paciente']
-                cadastro.cpf_paciente = self.cleaned_data['cpf_paciente']
-                cadastro.data_nascimento_paciente = self.cleaned_data['data_nascimento_paciente']
+        if cadastro:
+            cadastro.nome_paciente = self.cleaned_data.get('nome_paciente')
+            cadastro.email_paciente = self.cleaned_data.get('email_paciente')
+            cadastro.cpf_paciente = self.cleaned_data.get('cpf_paciente')
+            cadastro.data_nascimento_paciente = self.cleaned_data.get('data_nascimento_paciente')
+            if commit:
                 cadastro.save()
-        except Exception as e:
-            raise ValidationError(f"Erro ao atualizar CadastroRegistro: {e}")
 
         if commit:
             perfil.save()
 
         return perfil
-

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Consultas Realizadas</h1>
+
+    {% if consultas %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome do Paciente</th>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Assunto</th>
+                    <th>Observações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for consulta in consultas %}
+                    <tr>
+                        <td>{{ consulta.nome_paciente }}</td>
+                        <td>{{ consulta.data_consulta }}</td>
+                        <td>{{ consulta.hora_consulta }}</td>
+                        <td>{{ consulta.get_assunto_display }}</td>
+                        <td>{{ consulta.observacoes|default:"Sem observações" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Não há consultas realizadas.</p>
+    {% endif %}
+</div>
+{% endblock %}

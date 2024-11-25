@@ -1,11 +1,11 @@
-# models.py do app consulta
 from django.db import models
 from cadastro_registro.models import CadastroRegistro
 from django.conf import settings
 from datetime import time, date
+from .models import Prontuario
+
 
 class Consulta(models.Model):
-    # Opções de assunto para a consulta
     ASSUNTO_OPCOES = [
         ('avaliacao_diagnostico', 'Avaliação e Diagnóstico'),
         ('tratamentos_restauradores', 'Tratamentos Restauradores'),
@@ -19,8 +19,7 @@ class Consulta(models.Model):
         ('acompanhamento_manutencao', 'Acompanhamento e Manutenção'),
     ]
 
-    # Campos existentes
-    paciente = models.ForeignKey(CadastroRegistro, on_delete=models.CASCADE, null=True)
+    paciente = models.ForeignKey(CadastroRegistro, on_delete=models.CASCADE, null=True, blank=True)
     nome = models.CharField(max_length=100, default="Nome Desconhecido")
     email = models.EmailField()
     telefone = models.CharField(max_length=20, default="0000-0000")
@@ -28,10 +27,92 @@ class Consulta(models.Model):
     data_consulta = models.DateField(default=date.today)
     hora_consulta = models.TimeField(default=time(8, 0))
     observacoes = models.TextField(blank=True, null=True)
-    medico = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, limit_choices_to={'groups__name': 'medico'})
+    medico = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        limit_choices_to={'groups__name': 'medico'}
+    )
 
-    # Novo campo: exame realizado
-    exame_realizado = models.BooleanField(default=False, verbose_name="Exame Realizado")
+    # Campos do prontuário
+    nome_paciente = models.CharField(
+        max_length=255,
+        verbose_name="Nome Completo do Paciente",
+        default="Nome Desconhecido"
+    )
+    data_nascimento = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name="Data de Nascimento"
+    )
+    genero = models.CharField(
+        max_length=20,
+        choices=[
+            ('masculino', 'Masculino'),
+            ('feminino', 'Feminino'),
+            ('outro', 'Outro')
+        ],
+        verbose_name="Gênero",
+        default='masculino'
+    )
+    endereco_contato = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name="Endereço e Contato"
+    )
+    documento_identificacao = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True,
+        verbose_name="Documento de Identificação"
+    )
+    condicoes_saude = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name="Condições de Saúde Geral"
+    )
+    cirurgias_anteriores = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name="Cirurgias Anteriores"
+    )
+    historico_tratamentos = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name="Histórico de Tratamentos Odontológicos"
+    )
+    avaliacao_cavidade = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name="Avaliação da Cavidade Bucal"
+    )
+    lesoes_anomalias = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name="Presença de Lesões ou Anomalias"
+    )
+    queixas_principais = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name="Queixas Principais do Paciente"
+    )
+    diagnostico_detalhado = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name="Diagnóstico Detalhado"
+    )
+    procedimentos_planejados = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name="Procedimentos Planejados"
+    )
+
+    exame_realizado = models.BooleanField(
+        default=False,
+        verbose_name="Exame Realizado"
+    )
 
     def __str__(self):
         return f'Consulta de {self.nome} em {self.data_consulta} às {self.hora_consulta}'

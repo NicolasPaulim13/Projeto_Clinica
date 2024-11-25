@@ -16,19 +16,27 @@
         <form method="POST" action="{% url 'redefinir_senha' %}">
             {% csrf_token %}
             <div class="Codigo">
-                <input type="text" id="redefinir_senha" name="redefinir_senha" placeholder="Nova Senha" required>
+                <input type="password" id="nova_senha" name="nova_senha" placeholder="Nova Senha" required>
             </div>
-            
+        
             <div class="Codigo">
-                <input type="text" id="redefinir_senha" name="redefinir_senha" placeholder="Confirme a Senha" required>
+                <input type="password" id="confirmar_senha" name="confirmar_senha" placeholder="Confirme a Senha" required>
             </div>
-            
-
+        
+            <div class="Codigo" id="requisitos">
+                <span id="requisito_maiusculas">Letras maiúsculas</span>
+                <span id="requisito_minusculas">Letras minúsculas</span>
+                <span id="requisito_numeros">Números</span>
+                <span id="requisito_especiais">Caracteres especiais</span>
+            </div>
+        
             <button type="submit">Redefinir Senha</button>
         </form>
+        
+        <br>
         <!-- Exibição de mensagens -->
         {% if messages %}
-        <ul>
+        <ul class="redefinir">
             {% for message in messages %}
             <li>{{ message }}</li>
             {% endfor %}
@@ -36,5 +44,43 @@
         {% endif %}
     </div>
 </div>
+
+<script>
+    // Função para verificar se a senha atende aos requisitos
+    function verificarRequisitos() {
+        var senha = document.getElementById('redefinir_senha').value;
+        var confirmSenha = document.getElementById('redefinir_senha_confirm').value;
+
+        // Requisitos de senha
+        var maiusculas = /[A-Z]/.test(senha);
+        var minusculas = /[a-z]/.test(senha);
+        var numeros = /\d/.test(senha);
+        var especiais = /[!@#$%^&*(),.?":{}|<>]/.test(senha);
+
+        // Atualizando o status dos requisitos
+        document.getElementById('requisito_maiusculas').style.color = maiusculas ? 'green' : 'red';
+        document.getElementById('requisito_minusculas').style.color = minusculas ? 'green' : 'red';
+        document.getElementById('requisito_numeros').style.color = numeros ? 'green' : 'red';
+        document.getElementById('requisito_especiais').style.color = especiais ? 'green' : 'red';
+
+        // Verificando se as senhas coincidem
+        if (senha !== confirmSenha) {
+            document.getElementById('requisito_maiusculas').style.color = 'red';
+            document.getElementById('requisito_minusculas').style.color = 'red';
+            document.getElementById('requisito_numeros').style.color = 'red';
+            document.getElementById('requisito_especiais').style.color = 'red';
+        } else {
+            document.getElementById('requisito_maiusculas').style.color = maiusculas ? 'green' : 'red';
+            document.getElementById('requisito_minusculas').style.color = minusculas ? 'green' : 'red';
+            document.getElementById('requisito_numeros').style.color = numeros ? 'green' : 'red';
+            document.getElementById('requisito_especiais').style.color = especiais ? 'green' : 'red';
+        }
+    }
+
+    // Evento para verificar os requisitos toda vez que o usuário digitar
+    document.getElementById('redefinir_senha').addEventListener('input', verificarRequisitos);
+    document.getElementById('redefinir_senha_confirm').addEventListener('input', verificarRequisitos);
+
+</script>
 
 {% endblock %}

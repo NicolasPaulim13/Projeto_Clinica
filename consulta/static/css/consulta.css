@@ -43,26 +43,47 @@
     border-radius: 4px;
     padding: 0.5rem;
   }
-  
-  .select-medico {
-    /* Estilos específicos para o select */
-    width: 100%;
-    height: 3rem; /* Ajuste a altura conforme necessário */
+/* Ajustes para o campo select */
+.select-medico {
+    width: 100%; /* Garante que ocupe toda a largura disponível */
+    height: 3rem; /* Define uma altura fixa */
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
     appearance: none; /* Remove o estilo padrão do navegador */
     -webkit-appearance: none; /* Para Safari */
     -moz-appearance: none; /* Para Firefox */
-  
-    /* Estilos de borda e preenchimento (opcional, ajuste como desejar) */
-    /* border: 1px solid #ccc;  */
-    /* border-radius: 4px; */
-    padding: 0.5rem 1rem; /* Ajuste o padding para acomodar a seta */
-  
-    /* Background image para a seta do dropdown */
-    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"%3E%3Cpath fill="%233498db" d="M2 0L0 2h4zm0 5L0 3h4z"/%3E%3C/svg%3E');
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"%3E%3Cpath fill="%236c757d" d="M2 0L0 2h4zm0 5L0 3h4z"/%3E%3C/svg%3E');
     background-repeat: no-repeat;
-    background-position: right 0.7em top 50%; /* Ajuste o posicionamento da seta */
-    background-size: 0.65em auto;
-  }
+    background-position: right 0.75rem center;
+    background-size: 1rem auto;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.select-medico:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+}
+
+.select-medico option {
+    padding: 10px;
+    font-size: 1rem;
+}
+
+@media (max-width: 576px) {
+    .select-medico {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+        background-position: right 0.5rem center;
+        background-size: 0.8rem auto;
+    }
+}
+
+
 /* Responsividade */
 @media (max-width: 576px) {
     .select-medico {
@@ -377,4 +398,44 @@ button[type="submit"]:hover {
     align-items: center;
     justify-content: center;
     display: flex;
+}
+
+td {
+    text-align: center; /* Alinha o conteúdo horizontalmente */
+    vertical-align: middle; /* Alinha o conteúdo verticalmente */
+}
+
+.iniciar-consulta img {
+    display: block; /* Garante que o ícone seja tratado como um bloco */
+    margin: 0 auto; /* Centraliza o bloco horizontalmente */
+}
+
+.botoes-consulta {
+    display: flex; /* Layout flexível */
+    gap: 3px; /* Espaçamento entre os botões */
+}
+
+.btn-proximas, .btn-realizadas {
+    padding: 6px 12px; /* Tamanho dos botões */
+    border: none;
+    border-bottom-left-radius: 0px; /* Arredonda os cantos */
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px; /* Arredonda os cantos */
+    cursor: pointer;
+    font-size: 16px; /* Tamanho da fonte */
+}
+
+.btn-proximas {
+    background-color: #999999; /* Cor azul */
+    color: white;
+}
+
+.btn-realizadas {
+    background-color: #6c757d; /* Cor cinza */
+    color: white;
+}
+
+.btn-proximas:hover, .btn-realizadas:hover {
+    opacity: 0.9; /* Efeito ao passar o mouse */
 }

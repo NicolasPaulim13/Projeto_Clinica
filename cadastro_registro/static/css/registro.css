@@ -22,7 +22,23 @@
         border-radius: 1vh;
         padding: 15px;
     }
+
+    .emailregistro  input[type="emailregistro"]{ 
+        width: 130%;
+        padding: 15px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;}
     
+    .nome input[type="nomeregistro"] {
+        width: 130%;
+        padding: 15px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
     /* Estilos do campo de CPF */
     .cpf {
         width: 100%;

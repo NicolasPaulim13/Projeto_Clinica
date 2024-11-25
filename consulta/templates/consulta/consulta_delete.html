@@ -1,17 +1,39 @@
-<!-- consulta/consulta_delete.html -->
 {% extends 'registration/base.html' %}
 {% block content %}
-<div class="container">
-    <h2>Tem certeza de que deseja excluir a consulta?</h2>
-    <p><strong>Nome do Paciente:</strong> {{ consulta.nome }}</p>
-    <p><strong>Data da Consulta:</strong> {{ consulta.data_consulta|date:"d/m/Y" }}</p>
-    <p><strong>Hora da Consulta:</strong> {{ consulta.hora_consulta|time:"H:i" }}</p>
-    <p><strong>Observações:</strong> {{ consulta.observacoes }}</p>
+{% load static %}
 
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
-        <a href="{% url 'consulta_list' %}" class="btn btn-secondary">Cancelar</a>
-    </form>
+<div class="titulo_consulta">
+    <h1>Excluir Consulta</h1>
+    <div class="texto_consulta">
+        <a href="{% url 'index' %}">Home</a> / <a href="{% url 'consulta_list' %}">Consultas</a> / Excluir Consulta
+    </div>
 </div>
+
+<div class="form-wrapper">
+    <div class="card p-4 shadow-lg form-container">
+        <h2 class="text-danger text-center mb-4">
+            <i class="bi bi-exclamation-circle"></i> Confirmação de Exclusão
+        </h2>
+        <p class="text-center">
+            Tem certeza de que deseja excluir a consulta?
+        </p>
+        <div class="mb-4">
+            <p><strong>Nome do Paciente:</strong> {{ consulta.nome }}</p>
+            <p><strong>Data da Consulta:</strong> {{ consulta.data_consulta|date:"d/m/Y" }}</p>
+            <p><strong>Hora da Consulta:</strong> {{ consulta.hora_consulta|time:"H:i" }}</p>
+            <p><strong>Observações:</strong> {{ consulta.observacoes }}</p>
+        </div>
+
+        <form method="post" class="text-center">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger me-2">
+                <i class="bi bi-trash"></i> Confirmar Exclusão
+            </button>
+            <a href="{% url 'consulta_list' %}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Cancelar
+            </a>
+        </form>
+    </div>
+</div>
+
 {% endblock %}

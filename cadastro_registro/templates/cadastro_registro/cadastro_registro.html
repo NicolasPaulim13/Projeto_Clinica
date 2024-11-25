@@ -18,15 +18,15 @@
 
       <!-- Campo de Nome -->
       <div class="nome">
-        <input type="text" name="nome_paciente" value="{{ request.POST.nome_paciente|default:'' }}" placeholder="Nome" required />
+        <input type="nomeregistro" name="nome_paciente" value="{{ request.POST.nome_paciente|default:'' }}" placeholder="Nome" required />
         {% if form.nome_paciente.errors %}
         <p style="color: red;">{{ form.nome_paciente.errors.0 }}</p>
         {% endif %}
       </div>
 
       <!-- Campo de Email -->
-      <div class="Email">
-        <input type="email" name="email_paciente" value="{{ request.POST.email_paciente|default:'' }}" placeholder="Email" required />
+      <div class="emailregistro">
+        <input type="emailregistro" name="email_paciente" value="{{ request.POST.email_paciente|default:'' }}" placeholder="Email" required />
         {% if form.email_paciente.errors %}
         <p style="color: red;">{{ form.email_paciente.errors.0 }}</p>
         {% endif %}
@@ -111,6 +111,8 @@
     {% endif %}
   </div>
 </div>
+
+
 
 <!-- Adicionando Script para Máscara de CPF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

@@ -1,5 +1,5 @@
-<!-- consulta/consulta.html -->
-{% extends 'registration/base.html' %} {% block content %}
+{% extends 'registration/base.html' %}
+{% block content %}
 {% load static %}
 
 <div class="titulo_consulta">
@@ -20,7 +20,7 @@
           name="nome"
           class="form-control"
           id="nome"
-          value="{{ user.cadastroregistro.nome_paciente }}"
+          value="{{ user.cadastro_paciente.nome_paciente }}"
           readonly
         />
       </div>
@@ -31,7 +31,7 @@
           name="email"
           class="form-control"
           id="email"
-          value="{{ user.cadastroregistro.email_paciente }}"
+          value="{{ user.cadastro_paciente.email_paciente }}"
           readonly
         />
       </div>
@@ -47,34 +47,32 @@
         />
       </div>
 
-      <!-- Campo para selecionar o médico -->
-      <div class="form-group col-12">
-        <label for="medico" class="form-label">Selecione um médico:</label>
-        <select name="medico" id="medico" class="form-control select-medico" required>
+      <div>
+        <label for="medico">Selecione um médico:</label>
+        <select name="medico" id="medico" required>
+            <option value="" disabled selected>Escolha um médico</option>
             {% for medico in medicos %}
-            <option value="{{ medico.id }}">
-                {{ medico.get_full_name }}
-            </option>
+                <option value="{{ medico.id }}">
+                    {% if medico.first_name and medico.last_name %}
+                        {{ medico.first_name }} {{ medico.last_name }}
+                    {% else %}
+                        {{ medico.email }}
+                    {% endif %}
+                </option>
             {% endfor %}
-            {% if not medicos %}
-            <option value="" disabled>Nenhum médico disponível</option>
-            {% endif %}
         </select>
     </div>
+    
+    
 
       <div class="col-12">
         <label for="assunto" class="form-label">Assunto:</label>
         <select name="assunto" class="form-control" id="assunto" required>
-          <option value="avaliacao_diagnostico">Avaliação e Diagnóstico</option>
-          <option value="tratamentos_restauradores">Tratamentos Restauradores</option>
-          <option value="tratamentos_periodontais">Tratamentos Periodontais</option>
-          <option value="odontopediatria">Odontopediatria</option>
-          <option value="ortodontia">Ortodontia</option>
-          <option value="odontologia_estetica">Odontologia Estética</option>
-          <option value="cirurgia_oral">Cirurgia Oral</option>
-          <option value="proteses_dentarias">Próteses Dentárias</option>
-          <option value="consultas_emergencia">Consultas de Emergência</option>
-          <option value="acompanhamento_manutencao">Acompanhamento e Manutenção</option>
+          {% for key, value in form.fields.assunto.choices %}
+          <option value="{{ key }}" {% if key == form.initial.assunto %}selected{% endif %}>
+            {{ value }}
+          </option>
+          {% endfor %}
         </select>
       </div>
 
@@ -98,7 +96,6 @@
       </div>
     </form>
 
-    <!-- Debug de mensagens -->
     {% if mensagem %}
     <div class="alert alert-warning mt-3">{{ mensagem }}</div>
     {% endif %}

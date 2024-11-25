@@ -1,12 +1,25 @@
 /* Container principal do formulário de login */
 
+.emailpaciente input[type="emailpaciente"]{
+    width: 140%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
 
-.augustoeidiota {
-    position: relative;
-    left: 35%;
-    margin-top: 5%;
-    width: 40%;
 }
+
+.senhapciente input[type="password"]{
+    width: 140%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+
+}
+
 .tudis {
     position: relative;
     left: 35%;
@@ -28,6 +41,8 @@
     text-align: center;
 }
 
+
+    
 /* Logo no topo do formulário */
 .login-container img {
     width: 100px;
@@ -214,4 +229,7 @@
       min-width: 20em;
     }
 }
+
+
+
 

@@ -19,6 +19,10 @@
 
     </div>
 
+    <div class="botoes-consulta">
+        <button id="btn-proximas" class="btn-proximas active">Próximas</button>
+    </div>
+    
     <table class="table table-striped table-bordered">
         <thead class="table-light">
             <tr>
@@ -44,18 +48,18 @@
                     </a>
                     <!-- Ícone de exclusão -->
                     <a href="{% url 'consulta_delete' consulta.id %}">
-                        <img src="https://cdn-icons-png.flaticon.com/512/484/484611.png" alt="Excluir" width="20px"
-                            height="20px">
+                        <img src="https://cdn-icons-png.flaticon.com/512/484/484611.png" alt="Excluir" width="20px" height="20px">
                     </a>
                     {% endif %}
                 
                     {% if user_is_medico %}
-                    <a class="iniciar-consulta" href="{% url 'prontuario' %}">
+                    <!-- Ícone para iniciar consulta (prontuário) -->
+                    <a class="iniciar-consulta" href="{% url 'prontuario' consulta.id %}">
                         <img src="{% static 'img/img_iniciar.png' %}" alt="" width="20px" height="20px">
                     </a>
                     {% endif %}
-
                 </td>
+                
             </tr>
             {% empty %}
             <tr>
