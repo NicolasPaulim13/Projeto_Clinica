@@ -23,3 +23,31 @@ document.getElementById('rg').addEventListener('input', function (event) {
 
     input.value = value; // Atualiza o valor do campo
 });
+
+document.getElementById('endereco_contato').addEventListener('input', function (event) {
+    var input = event.target;
+    if (input.value.length < 10) {
+        input.setCustomValidity("O endereço deve ter pelo menos 10 caracteres.");
+    } else {
+        input.setCustomValidity(""); // Limpa a mensagem de erro
+    }
+});
+
+document.getElementById('endereco_contato').addEventListener('input', function (event) {
+    var input = event.target;
+    var value = input.value;
+
+    // Remove espaços extras no início ou no final
+    value = value.trim();
+
+    // Validação básica: comprimento mínimo
+    if (value.length < 10) {
+        input.setCustomValidity("O endereço deve ter pelo menos 10 caracteres.");
+    } else {
+        input.setCustomValidity(""); // Limpa mensagem de erro se estiver válido
+    }
+
+    input.value = value; // Atualiza o valor no campo
+});
+
+

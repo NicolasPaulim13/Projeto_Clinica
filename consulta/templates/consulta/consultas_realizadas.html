@@ -1,6 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'registration/base.html' %}
 
 {% block content %}
+{% load static %}
 <div class="container">
     <h1>Consultas Realizadas</h1>
 
@@ -18,11 +19,12 @@
             <tbody>
                 {% for consulta in consultas %}
                     <tr>
-                        <td>{{ consulta.nome_paciente }}</td>
-                        <td>{{ consulta.data_consulta }}</td>
-                        <td>{{ consulta.hora_consulta }}</td>
-                        <td>{{ consulta.get_assunto_display }}</td>
+                        <td>{{ consulta.nome_paciente|default:"Sem nome" }}</td>
+                        <td>{{ consulta.data_consulta|default:"Sem data" }}</td>
+                        <td>{{ consulta.hora_consulta|default:"Sem hora" }}</td>
+                        <td>{{ consulta.get_assunto_display|default:"Sem assunto" }}</td>
                         <td>{{ consulta.observacoes|default:"Sem observações" }}</td>
+                        <td>{{ consulta.exame_realizado }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

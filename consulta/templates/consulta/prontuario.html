@@ -1,76 +1,103 @@
-{% extends 'base.html' %}
+{% extends 'registration/base.html' %}
 
 {% block content %}
+{% load static %}
 <div class="container-prontuario">
     <h1 class="h1-prontuario">Prontuário Odontológico</h1>
-    <form method="post" action="{% url 'editar_prontuario_completo' prontuario.id %}">
+    <form method="post" action="{% url 'prontuario' prontuario.id %}">
         {% csrf_token %}
+
+        <!-- Identificação do Paciente -->
         <section>
             <h2 class="h2-prontuario">1. Identificação do Paciente</h2>
             <ul>
-                <li><strong>Nome Completo:</strong>
-                    <input type="text" name="nome_paciente" value="{{ prontuario.nome_paciente }}" required />
+                <li>
+                    <label for="nome_paciente"><strong>Nome Completo:</strong></label>
+                    <input type="text" id="nome_paciente" name="nome_paciente" value="{{ cadastro_paciente.nome_paciente }}" readonly />
                 </li>
-                <li><strong>Data de Nascimento:</strong>
-                    <input type="date" name="data_nascimento" value="{{ prontuario.data_nascimento|date:'Y-m-d' }}" required />
+                <li>
+                    <label for="data_nascimento"><strong>Data de Nascimento:</strong></label>
+                    <input type="date" id="data_nascimento" name="data_nascimento" value="{{ cadastro_paciente.data_nascimento_paciente|date:'Y-m-d' }}" readonly />
                 </li>
-                <li><strong>Gênero:</strong>
-                    <select name="genero" required>
-                        <option value="masculino" {% if prontuario.genero == "masculino" %}selected{% endif %}>Masculino</option>
-                        <option value="feminino" {% if prontuario.genero == "feminino" %}selected{% endif %}>Feminino</option>
-                        <option value="outro" {% if prontuario.genero == "outro" %}selected{% endif %}>Outro</option>
-                    </select>
+                <li>
+                    <label for="genero"><strong>Gênero:</strong></label>
+                    <input type="text" id="genero" name="genero" value="{{ cadastro_paciente.get_sexo_paciente_display }}" readonly />
                 </li>
-                <li><strong>Endereço e Contato:</strong>
-                    <input type="text" name="endereco_contato" value="{{ prontuario.endereco_contato }}" required />
+                <li>
+                    <label for="cidade"><strong>Cidade:</strong></label>
+                    <input type="text" id="cidade" name="cidade" class="form-control" value="{{ prontuario.endereco_contato }}" 
+                        placeholder="Digite a cidade" pattern="[a-zA-Z\u00C0-\u00FF\s]+" title="Apenas letras e espaços são permitidos." required />
                 </li>
-                <li><strong>Documento de Identificação:</strong>
-                    <input type="text" name="documento_identificacao" value="{{ prontuario.documento_identificacao }}" required />
+                <li>
+                    <label for="documento_identificacao"><strong>Documento de Identificação:</strong></label>
+                    <input type="text" id="rg" name="documento_identificacao" 
+                        value="{{ prontuario.documento_identificacao }}" 
+                        placeholder="Digite no formato XX.XXX.XXX-XX" 
+                        maxlength="14" 
+                        required />
                 </li>
             </ul>
         </section>
+
+        <!-- Histórico Médico e Odontológico -->
         <section>
             <h2 class="h2-prontuario">2. Histórico Médico e Odontológico</h2>
             <ul>
-                <li><strong>Condições de Saúde Geral:</strong>
-                    <input type="text" name="condicoes_saude" value="{{ prontuario.condicoes_saude }}" required />
+                <li>
+                    <label for="condicoes_saude"><strong>Condições de Saúde Geral:</strong></label>
+                    <input type="text" id="condicoes_saude" name="condicoes_saude" value="{{ prontuario.condicoes_saude }}" required />
                 </li>
-                <li><strong>Cirurgias Anteriores:</strong>
-                    <input type="text" name="cirurgias_anteriores" value="{{ prontuario.cirurgias_anteriores }}" required />
+                <li>
+                    <label for="cirurgias_anteriores"><strong>Cirurgias Anteriores:</strong></label>
+                    <input type="text" id="cirurgias_anteriores" name="cirurgias_anteriores" value="{{ prontuario.cirurgias_anteriores }}" required />
                 </li>
-                <li><strong>Histórico de Tratamentos Odontológicos:</strong>
-                    <input type="text" name="historico_tratamentos" value="{{ prontuario.historico_tratamentos }}" required />
+                <li>
+                    <label for="historico_tratamentos"><strong>Histórico de Tratamentos Odontológicos:</strong></label>
+                    <input type="text" id="historico_tratamentos" name="historico_tratamentos" value="{{ prontuario.historico_tratamentos }}" required />
                 </li>
             </ul>
         </section>
+
+        <!-- Exame Clínico Odontológico -->
         <section>
             <h2 class="h2-prontuario">3. Exame Clínico Odontológico</h2>
             <ul>
-                <li><strong>Avaliação da Cavidade Bucal:</strong>
-                    <input type="text" name="avaliacao_cavidade" value="{{ prontuario.avaliacao_cavidade }}" required />
+                <li>
+                    <label for="avaliacao_cavidade"><strong>Avaliação da Cavidade Bucal:</strong></label>
+                    <input type="text" id="avaliacao_cavidade" name="avaliacao_cavidade" value="{{ prontuario.avaliacao_cavidade }}" required />
                 </li>
-                <li><strong>Presença de Lesões ou Anomalias:</strong>
-                    <input type="text" name="lesoes_anomalias" value="{{ prontuario.lesoes_anomalias }}" required />
+                <li>
+                    <label for="lesoes_anomalias"><strong>Presença de Lesões ou Anomalias:</strong></label>
+                    <input type="text" id="lesoes_anomalias" name="lesoes_anomalias" value="{{ prontuario.lesoes_anomalias }}" required />
                 </li>
-                <li><strong>Queixas Principais do Paciente:</strong>
-                    <input type="text" name="queixas_principais" value="{{ prontuario.queixas_principais }}" required />
+                <li>
+                    <label for="queixas_principais"><strong>Queixas Principais do Paciente:</strong></label>
+                    <input type="text" id="queixas_principais" name="queixas_principais" value="{{ prontuario.queixas_principais }}" required />
                 </li>
             </ul>
         </section>
+
+        <!-- Plano de Tratamento -->
         <section>
             <h2 class="h2-prontuario">4. Plano de Tratamento</h2>
             <ul>
-                <li><strong>Diagnóstico Detalhado:</strong>
-                    <input type="text" name="diagnostico_detalhado" value="{{ prontuario.diagnostico_detalhado }}" required />
+                <li>
+                    <label for="diagnostico_detalhado"><strong>Diagnóstico Detalhado:</strong></label>
+                    <input type="text" id="diagnostico_detalhado" name="diagnostico_detalhado" value="{{ prontuario.diagnostico_detalhado }}" required />
                 </li>
-                <li><strong>Procedimentos Planejados:</strong>
-                    <input type="text" name="procedimentos_planejados" value="{{ prontuario.procedimentos_planejados }}" required />
+                <li>
+                    <label for="procedimentos_planejados"><strong>Procedimentos Planejados:</strong></label>
+                    <input type="text" id="procedimentos_planejados" name="procedimentos_planejados" value="{{ prontuario.procedimentos_planejados }}" required />
                 </li>
             </ul>
         </section>
+
+        <!-- Botão de Finalização -->
         <section class="finalizar">
             <button type="submit" class="btn btn-primary">Salvar Alterações</button>
         </section>
     </form>
 </div>
+
+<script src="{% static 'js/prontuario.js' %}"></script>
 {% endblock %}

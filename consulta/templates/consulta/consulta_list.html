@@ -36,7 +36,7 @@
         <tbody>
             {% for consulta in consultas %}
             <tr>
-                <td>{{ consulta.nome }}</td>
+                <td>{{ consulta.paciente.nome_paciente }}</td>
                 <td>{{ consulta.data_consulta|date:"d/m/Y" }}</td>
                 <td>{{ consulta.hora_consulta|time:"H:i" }}</td>
                 <td>{{ consulta.observacoes }}</td>
