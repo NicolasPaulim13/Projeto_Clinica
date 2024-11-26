@@ -99,6 +99,13 @@
 
       <!-- Botão de Cadastro -->
       <button type="submit">Cadastrar-se</button>
+
+      <div class="signup-link">
+        <p>Paciente? <a href="{% url 'login' %}">Acesse seu painel pessoal aqui</a></p>
+        <p>Dentista? <a href="{% url 'login_medico' %}">Acesse o painel exclusivo aqui</a></p>
+        <p>Administrador? <a href="{% url 'admin:index' %}">Acesse o painel administrativo aqui</a></p>
+      </div>
+
     </form>
 
     <!-- Caso haja mensagens de erro ou sucesso -->

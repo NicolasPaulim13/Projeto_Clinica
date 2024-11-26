@@ -228,6 +228,11 @@
         right: -1em;
       min-width: 20em;
     }
+
+    .emailpaciente{
+        position: relative;
+        right: 20vh;
+    }
 }
 
 

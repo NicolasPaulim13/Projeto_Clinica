@@ -9,22 +9,31 @@
     <div class="config-sidebar">
         <ul>
             <li class="config-option" data-section="editarPerfil">
-                <a href="#">Editar Perfil</a>
+                <a href="#"><i class="fas fa-user-edit"></i> Editar Perfil</a>
             </li>
             <li class="config-option" data-section="informacoesPessoais">
-                <a href="#">Informações Pessoais</a>
+                <a href="#"><i class="fas fa-address-card"></i> Informações Pessoais</a>
             </li>
         </ul>
     </div>
 
     <!-- Área de conteúdo -->
     <div class="config-content">
+        <!-- Mensagem de Feedback -->
+        {% if messages %}
+        <div class="feedback-message">
+            {% for message in messages %}
+                <p class="message {{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
         <!-- Seção Editar Perfil -->
         <div id="editarPerfil" class="config-section active">
             <h1>Editar Perfil</h1>
             <form method="POST" enctype="multipart/form-data" action="{% url 'config' %}">
                 {% csrf_token %}
-                <input type="hidden" name="form_type" value="editar_perfil"> <!-- Identificador do formulário -->
+                <input type="hidden" name="form_type" value="editar_perfil">
                 <div class="form-section">
                     <label for="nome_paciente">Nome:</label>
                     <input type="text" name="nome_paciente" value="{{ cadastro.nome_paciente }}" required>
@@ -33,7 +42,7 @@
                     <label for="imagem_perfil">Imagem de Perfil:</label>
                     <input type="file" name="imagem_perfil">
                     {% if perfil.imagem_perfil %}
-                        <img src="{{ perfil.imagem_perfil.url }}" alt="Imagem de Perfil" style="max-width: 150px;">
+                        <img src="{{ perfil.imagem_perfil.url }}" alt="Imagem de Perfil" class="profile-image-preview">
                     {% endif %}
                 </div>
                 <button type="submit" class="btn-save">Salvar Alterações</button>
@@ -45,7 +54,7 @@
             <h1>Informações Pessoais</h1>
             <form method="POST" action="{% url 'config' %}">
                 {% csrf_token %}
-                <input type="hidden" name="form_type" value="editar_informacoes"> <!-- Identificador do formulário -->
+                <input type="hidden" name="form_type" value="editar_informacoes">
                 <div class="form-section">
                     <label for="email_paciente">Email:</label>
                     <input type="email" name="email_paciente" value="{{ cadastro.email_paciente }}" required>
@@ -70,12 +79,12 @@
                         value="{{ cadastro.data_nascimento_paciente|date:'Y-m-d' }}" 
                         required>
                 </div>
-                
                 <button type="submit" class="btn-save">Salvar Alterações</button>
             </form>
         </div>
     </div>
 </div>
+
 
 <script src="{% static 'js/config.js' %}"></script>
 {% endblock %}

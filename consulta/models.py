@@ -54,8 +54,6 @@ class Consulta(models.Model):
         blank=True,
         limit_choices_to={'groups__name': 'medico'}
     )
-
-    # Campos do prontuário
     nome_paciente = models.CharField(
         max_length=255,
         verbose_name="Nome Completo do Paciente",
@@ -138,7 +136,6 @@ class Consulta(models.Model):
         verbose_name="Procedimentos Planejados",
         default="Nenhum procedimento planejado"
     )
-
     exame_realizado = models.BooleanField(
         default=False,
         verbose_name="Exame Realizado"
